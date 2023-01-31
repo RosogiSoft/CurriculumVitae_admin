@@ -15,9 +15,7 @@ public class DataBaseConnection {
     private static String url;
     private static String user;
     private static String password;
-
     private static Person person;
-
     private static ObservableList<Person> personData = FXCollections.observableArrayList();
     public static void getConnectionData(){
         FileInputStream fileInputStream;
@@ -52,25 +50,6 @@ public class DataBaseConnection {
 //executeQuery(String sqlQuery, int columIndex)(){...}
 //Большие таблицы не получиться заполнить
 
-    /*
-    Запрос для использования фильтров
-SELECT
-Student.STUDENTNAME AS N,
-Student.DATEOFBIRTH AS DOB,
-Student.GROUPNUMBER AS GN,
-Student.TELEPHONENUMBER AS TN,
-Specialty_Code.SPECIALTYNAME AS specyalyti
-FROM
-Student AS Student
-LEFT JOIN
-Specialty_Code AS Specialty_Code
-ON
-Student.SPECIALTYCODE = Specialty_Code.SPECIALTYCODE
-WHERE
-Student.GROUPNUMBER Like '__________%' AND
-Specialty_Code.SPECIALTYNAME Like '__________%' AND
-Student.GROUPNUMBER Like '__________%';
-     */
     public static ObservableList<String> getSpecialty(){
         ObservableList<String> array = FXCollections.observableArrayList();
         String sqlQ = "SELECT SPECIALTYNAME FROM Specialty_Code";
@@ -101,10 +80,7 @@ Student.GROUPNUMBER Like '__________%';
         return array;
     }
 
-
-
-    public static ObservableList<Person> getData(String course, String groupNumber, String specialty) {
-        ObservableList<Person> namesArrayList = FXCollections.observableArrayList();
+    public static ObservableList<Person> getData(String course, String groupNumber, String specialty, String name) {
         String sqlQ = "SELECT " +
                 "Student.STUDENTNAME AS N," +
                 "Student.DATEOFBIRTH AS DOB," +
@@ -120,12 +96,9 @@ Student.GROUPNUMBER Like '__________%';
                 "WHERE " +
                 "Student.GROUPNUMBER LIKE '" + course + "%' AND " +
                 "Specialty_Code.SPECIALTYNAME LIKE '" + specialty + "%' AND " +
-                "Student.GROUPNUMBER LIKE '" + groupNumber + "%'";
+                "Student.GROUPNUMBER LIKE '" + groupNumber + "%' AND " +
+                "Student.STUDENTNAME LIKE '" + name + "%';";
 
-        System.out.println("Курс:" + course + "!");
-        System.out.println("Группа:" + groupNumber + "!");
-        System.out.println("Специальность:" + specialty + "!");
-        
         try (Connection conn = connect()) {
             Statement statement = conn.prepareStatement(sqlQ);
             ResultSet rs = statement.executeQuery(sqlQ);
@@ -141,6 +114,6 @@ Student.GROUPNUMBER Like '__________%';
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return namesArrayList;
+        return personData;
     }
 }

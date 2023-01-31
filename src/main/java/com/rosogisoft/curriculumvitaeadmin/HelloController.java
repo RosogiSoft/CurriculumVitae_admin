@@ -3,14 +3,9 @@ package com.rosogisoft.curriculumvitaeadmin;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Properties;
+import javafx.scene.input.KeyEvent;
 
 public class HelloController {
 
@@ -24,10 +19,24 @@ public class HelloController {
     public ChoiceBox courseFilterFileld;
     public ChoiceBox groupNumberFilterField;
     public ChoiceBox specialtyFilterFiled;
+    public TextField nameTextFiled;
+
+    private ObservableList<Person> personData = FXCollections.observableArrayList();
 
     public void initialize(){
         DataBaseConnection.getConnectionData();
         setChoiceBoxValues();
+    }
+    public void edit(ActionEvent actionEvent) {
+
+    }
+    public void generate(ActionEvent actionEvent) {
+
+    }
+
+    public void updateButton(ActionEvent actionEvent) {
+        System.out.println("НАчало метода updateButton");
+        updateTable();
     }
 
     private void setChoiceBoxValues() {
@@ -43,12 +52,20 @@ public class HelloController {
         groupNumberFilterField.setItems(DataBaseConnection.getGroupNumber());
         specialtyFilterFiled.setItems(DataBaseConnection.getSpecialty());
     }
-    public void updateTable(ActionEvent actionEvent) {
-        ObservableList<Person> personData =  DataBaseConnection.getData(
-                courseFilterFileld.getValue() != null ? courseFilterFileld.getValue().toString() : "%",
-                groupNumberFilterField.getValue() != null ? groupNumberFilterField.getValue().toString() : "%",
-                specialtyFilterFiled.getValue() != null ? specialtyFilterFiled.getValue().toString() : "%"
+    /*
+    Путь к оптимизации - делать запрос из БД ровно один раз при первичном обновлении таблицы
+    После этого можно фильтровать данные не при помощи SQL запроса, а при помощи филтрации коллекции personData
+    Первичный запрос можно сделать из метода initialize()
+     */
+    private void updateTable(){
+        personData.clear();
+        personData = DataBaseConnection.getData(
+                courseFilterFileld.getValue() != null ? courseFilterFileld.getValue().toString() : "",
+                groupNumberFilterField.getValue() != null ? groupNumberFilterField.getValue().toString() : "",
+                specialtyFilterFiled.getValue() != null ? specialtyFilterFiled.getValue().toString() : "",
+                nameTextFiled.getText() != null ? nameTextFiled.getText() : ""
         );
+
         nameColum.setCellValueFactory(new PropertyValueFactory<Person, String>("name"));
         specialtyColum.setCellValueFactory(new PropertyValueFactory<Person, String>("speciality"));
         dateOfBirthColum.setCellValueFactory(new PropertyValueFactory<Person, String>("dateOfBirth"));
@@ -57,11 +74,7 @@ public class HelloController {
         tableView.setItems(personData);
     }
 
-    public void edit(ActionEvent actionEvent) {
-
-    }
-
-    public void generate(ActionEvent actionEvent) {
+    public void keyReleasedOnNameTextFiled(KeyEvent keyEvent) {
 
     }
 }
