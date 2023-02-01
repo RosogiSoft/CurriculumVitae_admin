@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.util.Arrays;
 
 public class Person {
+    private String id;
     private String name;
     private String dateOfBirth;
     private String phoneNumber;
@@ -23,6 +24,8 @@ public class Person {
     private String faculty;
     private String formOfStudy;
     private String yearOfEnding;
+
+    private String city;
     private boolean[] competency = new boolean[15];
     private String specialtyInfo;
     private String[] softSkills;
@@ -198,6 +201,14 @@ public class Person {
         this.yearOfEnding = yearOfEnding;
     }
 
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
     public boolean[] getCompetency() {
         return competency;
     }
@@ -213,4 +224,11 @@ public class Person {
         this.softSkills = softSkills;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }

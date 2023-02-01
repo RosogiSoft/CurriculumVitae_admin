@@ -7,7 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 
-public class HelloController {
+public class MainController {
 
 
     public TableView<Person> tableView;
@@ -27,20 +27,22 @@ public class HelloController {
         DataBaseConnection.getConnectionData();
         setChoiceBoxValues();
     }
+    //Функция для открытия страницы студента с последующей возможностью редактирования
     public void edit(ActionEvent actionEvent) {
 
     }
+    //Функция для генерации резюме
     public void generate(ActionEvent actionEvent) {
 
     }
 
     public void updateButton(ActionEvent actionEvent) {
-        System.out.println("НАчало метода updateButton");
         updateTable();
     }
 
     private void setChoiceBoxValues() {
         ObservableList<String> course = FXCollections.observableArrayList(
+                new String(""),
                 new String("1"),
                 new String("2"),
                 new String("3"),
@@ -77,4 +79,5 @@ public class HelloController {
     public void keyReleasedOnNameTextFiled(KeyEvent keyEvent) {
 
     }
+
 }

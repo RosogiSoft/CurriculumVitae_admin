@@ -7,7 +7,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.Properties;
 
 public class DataBaseConnection {
@@ -59,6 +58,7 @@ public class DataBaseConnection {
             while (rs.next()) {
                 array.add(rs.getString(1));
             }
+            array.add("");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -74,6 +74,7 @@ public class DataBaseConnection {
             while (rs.next()) {
                 array.add(rs.getString(1));
             }
+            array.add("");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -82,11 +83,12 @@ public class DataBaseConnection {
 
     public static ObservableList<Person> getData(String course, String groupNumber, String specialty, String name) {
         String sqlQ = "SELECT " +
-                "Student.STUDENTNAME AS N," +
-                "Student.DATEOFBIRTH AS DOB," +
-                "Student.GROUPNUMBER AS GN," +
-                "Student.TELEPHONENUMBER AS TN," +
-                "Specialty_Code.SPECIALTYNAME AS specyalyti " +
+                "Student.ID," +
+                "Student.STUDENTNAME," +
+                "Student.DATEOFBIRTH," +
+                "Student.GROUPNUMBER," +
+                "Student.TELEPHONENUMBER," +
+                "Specialty_Code.SPECIALTYNAME " +
                 "FROM " +
                 "Student AS Student " +
                 "LEFT JOIN " +
@@ -104,11 +106,12 @@ public class DataBaseConnection {
             ResultSet rs = statement.executeQuery(sqlQ);
             while (rs.next()) {
                 person = new Person();
-                person.setName(rs.getString(1));
-                person.setDateOfBirth(rs.getString(2));
-                person.setGroupNumber(rs.getString(3));
-                person.setPhoneNumber(rs.getString(4));
-                person.setSpeciality(rs.getString(5));
+                person.setId(rs.getString(1));
+                person.setName(rs.getString(2));
+                person.setDateOfBirth(rs.getString(3));
+                person.setGroupNumber(rs.getString(4));
+                person.setPhoneNumber(rs.getString(5));
+                person.setSpeciality(rs.getString(6));
                 personData.add(person);
             }
         } catch (SQLException e) {
