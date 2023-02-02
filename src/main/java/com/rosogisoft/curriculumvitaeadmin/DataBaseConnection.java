@@ -7,7 +7,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.Properties;
 
 public class DataBaseConnection {
@@ -15,9 +14,7 @@ public class DataBaseConnection {
     private static String url;
     private static String user;
     private static String password;
-
     private static Person person;
-
     private static ObservableList<Person> personData = FXCollections.observableArrayList();
     public static void getConnectionData(){
         FileInputStream fileInputStream;
@@ -52,25 +49,6 @@ public class DataBaseConnection {
 //executeQuery(String sqlQuery, int columIndex)(){...}
 //Большие таблицы не получиться заполнить
 
-    /*
-    Запрос для использования фильтров
-SELECT
-Student.STUDENTNAME AS N,
-Student.DATEOFBIRTH AS DOB,
-Student.GROUPNUMBER AS GN,
-Student.TELEPHONENUMBER AS TN,
-Specialty_Code.SPECIALTYNAME AS specyalyti
-FROM
-Student AS Student
-LEFT JOIN
-Specialty_Code AS Specialty_Code
-ON
-Student.SPECIALTYCODE = Specialty_Code.SPECIALTYCODE
-WHERE
-Student.GROUPNUMBER Like '__________%' AND
-Specialty_Code.SPECIALTYNAME Like '__________%' AND
-Student.GROUPNUMBER Like '__________%';
-     */
     public static ObservableList<String> getSpecialty(){
         ObservableList<String> array = FXCollections.observableArrayList();
         String sqlQ = "SELECT SPECIALTYNAME FROM Specialty_Code";
@@ -80,6 +58,7 @@ Student.GROUPNUMBER Like '__________%';
             while (rs.next()) {
                 array.add(rs.getString(1));
             }
+            array.add("");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -95,22 +74,21 @@ Student.GROUPNUMBER Like '__________%';
             while (rs.next()) {
                 array.add(rs.getString(1));
             }
+            array.add("");
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return array;
     }
 
-
-
-    public static ObservableList<Person> getData(String course, String groupNumber, String specialty) {
-        ObservableList<Person> namesArrayList = FXCollections.observableArrayList();
+    public static ObservableList<Person> getData(String course, String groupNumber, String specialty, String name) {
         String sqlQ = "SELECT " +
-                "Student.STUDENTNAME AS N," +
-                "Student.DATEOFBIRTH AS DOB," +
-                "Student.GROUPNUMBER AS GN," +
-                "Student.TELEPHONENUMBER AS TN," +
-                "Specialty_Code.SPECIALTYNAME AS specyalyti " +
+                "Student.ID," +
+                "Student.STUDENTNAME," +
+                "Student.DATEOFBIRTH," +
+                "Student.GROUPNUMBER," +
+                "Student.TELEPHONENUMBER," +
+                "Specialty_Code.SPECIALTYNAME " +
                 "FROM " +
                 "Student AS Student " +
                 "LEFT JOIN " +
@@ -120,27 +98,25 @@ Student.GROUPNUMBER Like '__________%';
                 "WHERE " +
                 "Student.GROUPNUMBER LIKE '" + course + "%' AND " +
                 "Specialty_Code.SPECIALTYNAME LIKE '" + specialty + "%' AND " +
-                "Student.GROUPNUMBER LIKE '" + groupNumber + "%'";
+                "Student.GROUPNUMBER LIKE '" + groupNumber + "%' AND " +
+                "Student.STUDENTNAME LIKE '" + name + "%';";
 
-        System.out.println("Курс:" + course + "!");
-        System.out.println("Группа:" + groupNumber + "!");
-        System.out.println("Специальность:" + specialty + "!");
-        
         try (Connection conn = connect()) {
             Statement statement = conn.prepareStatement(sqlQ);
             ResultSet rs = statement.executeQuery(sqlQ);
             while (rs.next()) {
                 person = new Person();
-                person.setName(rs.getString(1));
-                person.setDateOfBirth(rs.getString(2));
-                person.setGroupNumber(rs.getString(3));
-                person.setPhoneNumber(rs.getString(4));
-                person.setSpeciality(rs.getString(5));
+                person.setId(rs.getString(1));
+                person.setName(rs.getString(2));
+                person.setDateOfBirth(rs.getString(3));
+                person.setGroupNumber(rs.getString(4));
+                person.setPhoneNumber(rs.getString(5));
+                person.setSpeciality(rs.getString(6));
                 personData.add(person);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return namesArrayList;
+        return personData;
     }
 }
