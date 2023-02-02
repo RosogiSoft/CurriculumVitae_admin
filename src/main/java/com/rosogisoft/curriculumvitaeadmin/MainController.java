@@ -3,9 +3,15 @@ package com.rosogisoft.curriculumvitaeadmin;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class MainController {
 
@@ -28,8 +34,17 @@ public class MainController {
         setChoiceBoxValues();
     }
     //Функция для открытия страницы студента с последующей возможностью редактирования
-    public void edit(ActionEvent actionEvent) {
-
+    public void edit(ActionEvent actionEvent) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("student_view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 900, 600);
+        stage.setTitle("Curriculum Vitae admin");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(tableView.getScene().getWindow());
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
     }
     //Функция для генерации резюме
     public void generate(ActionEvent actionEvent) {
