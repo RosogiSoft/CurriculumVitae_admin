@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="817.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rosogisoft.curriculumvitaeadmin.StudentController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="817.0" prefWidth="893.0" styleClass="background" stylesheets="@student_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rosogisoft.curriculumvitaeadmin.StudentController">
    <children>
-      <VBox prefHeight="600.0" prefWidth="272.0">
+      <VBox prefHeight="802.0" prefWidth="246.0">
          <children>
-            <Label prefHeight="43.0" prefWidth="208.0" text="Студент">
+            <Label prefHeight="43.0" prefWidth="208.0" styleClass="header" stylesheets="@student_style.css" text="Студент">
                <font>
                   <Font size="29.0" />
                </font>
@@ -24,7 +30,7 @@
             </Label>
             <ImageView fx:id="avatarImageView" fitHeight="306.0" fitWidth="223.0" pickOnBounds="true" preserveRatio="true">
                <VBox.margin>
-                  <Insets left="20.0" />
+                  <Insets left="20.0" right="20.0" />
                </VBox.margin>
             </ImageView>
          </children>
@@ -35,182 +41,384 @@
             <Insets top="15.0" />
          </HBox.margin>
       </VBox>
-      <VBox prefHeight="600.0" prefWidth="629.0">
+      <TabPane prefHeight="767.0" prefWidth="657.0" styleClass="tab_header" stylesheets="@student_style.css" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Личная информация">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="794.0" prefWidth="295.0">
+                     <children>
+                        <VBox prefHeight="543.0" prefWidth="609.0" spacing="30.0">
+                           <children>
+                              <HBox prefHeight="32.0" prefWidth="629.0">
+                                 <children>
+                                    <Label prefHeight="27.0" prefWidth="200.0" styleClass="sec_header" stylesheets="@student_style.css" text="ФИО">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="nameTextField" prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="32.0" prefWidth="629.0">
+                                 <children>
+                                    <Label prefHeight="27.0" prefWidth="200.0" styleClass="sec_header" stylesheets="@student_style.css" text="Номер телефона">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField fx:id="phoneNumberTextField" prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox prefHeight="32.0" prefWidth="629.0">
+                                 <children>
+                                    <Label prefHeight="27.0" prefWidth="200.0" styleClass="sec_header" stylesheets="@student_style.css" text="Дата рождения">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="birthDateTextField" prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="32.0" prefWidth="629.0">
+                                 <children>
+                                    <Label prefHeight="30.0" prefWidth="200.0" styleClass="sec_header" stylesheets="@student_style.css" text="Электронная почта">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="mailTextField" prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="32.0" prefWidth="629.0">
+                                 <children>
+                                    <Label prefHeight="27.0" prefWidth="200.0" styleClass="sec_header" stylesheets="@student_style.css" text="Группа">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="groupNumberTextField" prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="32.0" prefWidth="629.0">
+                                 <children>
+                                    <Label prefHeight="27.0" prefWidth="200.0" styleClass="sec_header" stylesheets="@student_style.css" text="Направление">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <ChoiceBox fx:id="specialityChoiceBox" prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="93.0" prefWidth="609.0">
+                                 <children>
+                                    <Label prefHeight="73.0" prefWidth="200.0" styleClass="sec_header" stylesheets="@student_style.css" text="Ссылки на социальные сети" wrapText="true">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextArea fx:id="socialNetworkTextArea" prefHeight="26.0" prefWidth="420.0" styleClass="text_frame" stylesheets="@student_style.css" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="20.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Образование">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="600.0" prefWidth="629.0" spacing="30.0">
+                           <children>
+                              <HBox prefHeight="72.0" prefWidth="629.0">
+                                 <children>
+                                    <Label prefHeight="74.0" prefWidth="200.0" styleClass="sec_header" stylesheets="@student_style.css" text="Название учебного заведения" wrapText="true">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css">
+                                       <HBox.margin>
+                                          <Insets top="20.0" />
+                                       </HBox.margin></TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox prefHeight="27.0" prefWidth="619.0">
+                                 <children>
+                                    <Label prefHeight="29.0" prefWidth="200.0" styleClass="sec_header" stylesheets="@student_style.css" text="Факультет" wrapText="true">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="32.0" prefWidth="629.0">
+                                 <children>
+                                    <Label prefHeight="27.0" prefWidth="200.0" styleClass="sec_header" stylesheets="@student_style.css" text="Форма обучения">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <ChoiceBox prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="32.0" prefWidth="629.0">
+                                 <children>
+                                    <Label prefHeight="27.0" prefWidth="200.0" styleClass="sec_header" stylesheets="@student_style.css" text="Год окончания">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <ChoiceBox prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="27.0" prefWidth="619.0">
+                                 <children>
+                                    <Label prefHeight="29.0" prefWidth="200.0" styleClass="sec_header" stylesheets="@student_style.css" text="Город" wrapText="true">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Компетенции">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="708.0" prefWidth="630.0">
+                     <children>
+                        <ScrollPane cacheShape="false" centerShape="false" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" pickOnBounds="false" prefHeight="720.0" prefWidth="628.0" scaleShape="false" snapToPixel="false" vbarPolicy="ALWAYS">
+                           <content>
+                              <VBox prefHeight="702.0" prefWidth="571.0" spacing="7.0" styleClass="scroll-pane" stylesheets="@student_style.css">
+                                 <children>
+                                    <CheckBox fx:id="checkBox1" mnemonicParsing="false" prefWidth="560.0" snapToPixel="false" stylesheets="@student_style.css" wrapText="true" VBox.vgrow="NEVER">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <styleClass>
+                                          <String fx:value="box" />
+                                          <String fx:value="check-box" />
+                                          <String fx:value="mark" />
+                                       </styleClass>
+                                    </CheckBox>
+                                    <CheckBox fx:id="checkBox2" mnemonicParsing="false" prefWidth="560.0" snapToPixel="false" stylesheets="@student_style.css" wrapText="true" VBox.vgrow="NEVER">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <styleClass>
+                                          <String fx:value="box" />
+                                          <String fx:value="check-box" />
+                                       </styleClass>
+                                    </CheckBox>
+                                    <CheckBox fx:id="checkBox3" mnemonicParsing="false" prefWidth="560.0" snapToPixel="false" stylesheets="@student_style.css" wrapText="true" VBox.vgrow="NEVER">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <styleClass>
+                                          <String fx:value="box" />
+                                          <String fx:value="check-box" />
+                                       </styleClass>
+                                    </CheckBox>
+                                    <CheckBox fx:id="checkBox4" mnemonicParsing="false" prefWidth="560.0" snapToPixel="false" stylesheets="@student_style.css" wrapText="true" VBox.vgrow="NEVER">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <styleClass>
+                                          <String fx:value="box" />
+                                          <String fx:value="check-box" />
+                                       </styleClass>
+                                    </CheckBox>
+                                    <CheckBox fx:id="checkBox5" mnemonicParsing="false" prefWidth="560.0" snapToPixel="false" stylesheets="@student_style.css" wrapText="true" VBox.vgrow="NEVER">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <styleClass>
+                                          <String fx:value="box" />
+                                          <String fx:value="check-box" />
+                                       </styleClass>
+                                    </CheckBox>
+                                    <CheckBox fx:id="checkBox6" mnemonicParsing="false" prefWidth="560.0" snapToPixel="false" stylesheets="@student_style.css" wrapText="true" VBox.vgrow="NEVER">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <styleClass>
+                                          <String fx:value="box" />
+                                          <String fx:value="check-box" />
+                                       </styleClass>
+                                    </CheckBox>
+                                    <CheckBox fx:id="checkBox7" mnemonicParsing="false" prefWidth="560.0" snapToPixel="false" stylesheets="student_style.css" wrapText="true" VBox.vgrow="NEVER">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <styleClass>
+                                          <String fx:value="box" />
+                                          <String fx:value="check-box" />
+                                       </styleClass>
+                                    </CheckBox>
+                                    <CheckBox fx:id="checkBox8" mnemonicParsing="false" prefWidth="560.0" snapToPixel="false" stylesheets="@student_style.css" wrapText="true" VBox.vgrow="NEVER">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <styleClass>
+                                          <String fx:value="box" />
+                                          <String fx:value="check-box" />
+                                       </styleClass>
+                                    </CheckBox>
+                                    <CheckBox fx:id="checkBox9" mnemonicParsing="false" prefWidth="560.0" snapToPixel="false" stylesheets="@student_style.css" wrapText="true" VBox.vgrow="NEVER">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <styleClass>
+                                          <String fx:value="box" />
+                                          <String fx:value="check-box" />
+                                       </styleClass>
+                                    </CheckBox>
+                                    <CheckBox fx:id="checkBox10" mnemonicParsing="false" prefWidth="560.0" snapToPixel="false" stylesheets="@student_style.css" wrapText="true" VBox.vgrow="NEVER">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <styleClass>
+                                          <String fx:value="box" />
+                                          <String fx:value="check-box" />
+                                       </styleClass>
+                                    </CheckBox>
+                                    <CheckBox fx:id="checkBox11" mnemonicParsing="false" prefWidth="560.0" snapToPixel="false" stylesheets="@student_style.css" wrapText="true" VBox.vgrow="NEVER">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <styleClass>
+                                          <String fx:value="box" />
+                                          <String fx:value="check-box" />
+                                       </styleClass>
+                                    </CheckBox>
+                                    <CheckBox fx:id="checkBox12" mnemonicParsing="false" prefWidth="560.0" snapToPixel="false" stylesheets="@student_style.css" wrapText="true" VBox.vgrow="NEVER">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <styleClass>
+                                          <String fx:value="box" />
+                                          <String fx:value="check-box" />
+                                       </styleClass>
+                                    </CheckBox>
+                                    <CheckBox fx:id="checkBox13" mnemonicParsing="false" prefWidth="560.0" snapToPixel="false" stylesheets="@student_style.css" wrapText="true" VBox.vgrow="NEVER">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <styleClass>
+                                          <String fx:value="box" />
+                                          <String fx:value="check-box" />
+                                       </styleClass>
+                                    </CheckBox>
+                                    <CheckBox fx:id="checkBox14" mnemonicParsing="false" prefWidth="560.0" snapToPixel="false" stylesheets="@student_style.css" wrapText="true" VBox.vgrow="NEVER">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <styleClass>
+                                          <String fx:value="box" />
+                                          <String fx:value="check-box" />
+                                       </styleClass>
+                                    </CheckBox>
+                                    <CheckBox fx:id="checkBox15" mnemonicParsing="false" prefWidth="560.0" snapToPixel="false" stylesheets="@student_style.css" wrapText="true" VBox.vgrow="NEVER">
+                                       <styleClass>
+                                          <String fx:value="box" />
+                                          <String fx:value="check-box" />
+                                       </styleClass>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </CheckBox>
+                                 </children>
+                                 <padding>
+                                    <Insets left="5.0" right="6.0" top="5.0" />
+                                 </padding>
+                              </VBox>
+                           </content>
+                           <padding>
+                              <Insets left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </ScrollPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Дополнительная информация">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="600.0" prefWidth="629.0" spacing="30.0" AnchorPane.rightAnchor="4.0">
+                           <children>
+                              <HBox prefHeight="75.0" prefWidth="619.0">
+                                 <children>
+                                    <Label prefHeight="60.0" prefWidth="200.0" styleClass="sec_header" stylesheets="@student_style.css" text="Дипломы, награды" wrapText="true">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextArea prefHeight="26.0" prefWidth="400.0" styleClass="text_frame" stylesheets="@student_style.css" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox prefHeight="75.0" prefWidth="619.0">
+                                 <children>
+                                    <Label prefHeight="60.0" prefWidth="200.0" styleClass="sec_header" stylesheets="@student_style.css" text="Проффесиоанльные навыки" wrapText="true">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextArea prefHeight="26.0" prefWidth="400.0" styleClass="text_frame" stylesheets="@student_style.css" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="32.0" prefWidth="629.0">
+                                 <children>
+                                    <Label prefHeight="27.0" prefWidth="200.0" styleClass="sec_header" stylesheets="@student_style.css" text="Иностранный язык">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <ChoiceBox prefHeight="25.0" prefWidth="400.0" styleClass="field" stylesheets="@student_style.css" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="32.0" prefWidth="629.0">
+                                 <children>
+                                    <Label prefHeight="27.0" prefWidth="200.0" styleClass="sec_header" stylesheets="@student_style.css" text="Водительские права">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <ChoiceBox prefHeight="25.0" prefWidth="400.0" styleClass="field" stylesheets="@student_style.css" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
          <HBox.margin>
-            <Insets right="20.0" top="50.0" />
+            <Insets top="50.0" />
          </HBox.margin>
-         <children>
-            <HBox prefHeight="32.0" prefWidth="629.0">
-               <children>
-                  <Label prefHeight="27.0" prefWidth="170.0" text="ФИО">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="nameTextField" prefHeight="25.0" prefWidth="420.0" />
-               </children>
-            </HBox>
-            <HBox prefHeight="32.0" prefWidth="629.0">
-               <children>
-                  <Label prefHeight="27.0" prefWidth="170.0" text="Дата рождения">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="birthDateTextField" prefHeight="25.0" prefWidth="420.0" />
-               </children>
-            </HBox>
-            <HBox prefHeight="32.0" prefWidth="629.0">
-               <children>
-                  <Label prefHeight="27.0" prefWidth="170.0" text="Номер телефона">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="phoneNumberTextField" prefHeight="25.0" prefWidth="420.0" />
-               </children>
-            </HBox>
-            <HBox prefHeight="32.0" prefWidth="629.0">
-               <children>
-                  <Label prefHeight="27.0" prefWidth="170.0" text="Электронная почта">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="mailTextField" prefHeight="25.0" prefWidth="420.0" />
-               </children>
-            </HBox>
-            <HBox prefHeight="32.0" prefWidth="629.0">
-               <children>
-                  <Label prefHeight="27.0" prefWidth="170.0" text="Группа">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="groupNumberTextField" prefHeight="25.0" prefWidth="420.0" />
-               </children>
-            </HBox>
-            <HBox prefHeight="32.0" prefWidth="629.0">
-               <children>
-                  <Label prefHeight="27.0" prefWidth="170.0" text="Направление">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <ChoiceBox fx:id="specialityChoiceBox" prefHeight="25.0" prefWidth="420.0" />
-               </children>
-            </HBox>
-            <HBox prefHeight="72.0" prefWidth="619.0">
-               <children>
-                  <Label prefHeight="60.0" prefWidth="170.0" text="Список компетенций" wrapText="true">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <TextArea prefHeight="75.0" prefWidth="420.0" />
-               </children>
-            </HBox>
-            <HBox prefHeight="75.0" prefWidth="619.0">
-               <children>
-                  <Label prefHeight="60.0" prefWidth="170.0" text="Дипломы, награды" wrapText="true">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <TextArea fx:id="additionalInfoTextArea" prefHeight="26.0" prefWidth="420.0" />
-               </children>
-            </HBox>
-            <HBox prefHeight="75.0" prefWidth="619.0">
-               <children>
-                  <Label prefHeight="60.0" prefWidth="170.0" text="Проффесиоанльные навыки" wrapText="true">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <TextArea fx:id="additionalCompetencyTextArea" prefHeight="26.0" prefWidth="420.0" />
-               </children>
-            </HBox>
-            <HBox prefHeight="32.0" prefWidth="629.0">
-               <children>
-                  <Label prefHeight="27.0" prefWidth="170.0" text="Иностранный язык">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <ChoiceBox fx:id="foreignLanguageChoiceBox" prefHeight="25.0" prefWidth="420.0" />
-               </children>
-            </HBox>
-            <HBox prefHeight="32.0" prefWidth="629.0">
-               <children>
-                  <Label prefHeight="27.0" prefWidth="170.0" text="Водительские права">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <ChoiceBox fx:id="driverLicenceChoiceBox" prefHeight="25.0" prefWidth="420.0" />
-               </children>
-            </HBox>
-            <HBox prefHeight="75.0" prefWidth="619.0">
-               <children>
-                  <Label prefHeight="60.0" prefWidth="170.0" text="Ссылки на социальные сети" wrapText="true">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <TextArea fx:id="socialNetworkTextArea" prefHeight="26.0" prefWidth="420.0" />
-               </children>
-            </HBox>
-            <HBox prefHeight="67.0" prefWidth="619.0">
-               <children>
-                  <Label prefHeight="58.0" prefWidth="170.0" text="Название учебного заведения" wrapText="true">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="establishmentTextField" prefHeight="25.0" prefWidth="420.0" />
-               </children>
-            </HBox>
-            <HBox prefHeight="27.0" prefWidth="619.0">
-               <children>
-                  <Label prefHeight="29.0" prefWidth="170.0" text="Факультет" wrapText="true">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="facultyTextField" prefHeight="25.0" prefWidth="420.0" />
-               </children>
-            </HBox>
-            <HBox prefHeight="32.0" prefWidth="629.0">
-               <children>
-                  <Label prefHeight="27.0" prefWidth="170.0" text="Форма обучения">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <ChoiceBox fx:id="formOfStudyChoiceBox" prefHeight="25.0" prefWidth="420.0" />
-               </children>
-            </HBox>
-            <HBox prefHeight="32.0" prefWidth="629.0">
-               <children>
-                  <Label prefHeight="27.0" prefWidth="170.0" text="Год окончания">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <ChoiceBox fx:id="yearOfEndingChoiceBox" prefHeight="25.0" prefWidth="420.0" />
-               </children>
-            </HBox>
-            <HBox prefHeight="27.0" prefWidth="619.0">
-               <children>
-                  <Label prefHeight="29.0" prefWidth="170.0" text="Город" wrapText="true">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="cityTextField" prefHeight="25.0" prefWidth="420.0" />
-               </children>
-            </HBox>
-         </children>
-      </VBox>
+      </TabPane>
    </children>
 </HBox>
