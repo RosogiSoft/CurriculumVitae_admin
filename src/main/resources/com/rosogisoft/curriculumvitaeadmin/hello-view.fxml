@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rosogisoft.curriculumvitaeadmin.MainController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="background" stylesheets="@student_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rosogisoft.curriculumvitaeadmin.MainController">
    <children>
       <VBox prefHeight="575.0" prefWidth="782.0" spacing="5.0">
          <children>
@@ -62,7 +62,7 @@
                   <Font size="20.0" />
                </font></Label>
             <Label styleClass="tab_header" stylesheets="@student_style.css" text="Курс" />
-            <ChoiceBox fx:id="courseFilterFileld" prefHeight="19.0" prefWidth="141.0" styleClass="filter_field" stylesheets="@student_style.css" />
+            <ChoiceBox fx:id="courseFilterFileld" prefHeight="19.0" prefWidth="150.0" styleClass="filter_field" stylesheets="@student_style.css" />
             <Label text="Номер группы" />
             <ChoiceBox fx:id="groupNumberFilterField" prefWidth="150.0" styleClass="filter_field" stylesheets="@student_style.css" />
             <Label text="Специальность" />
