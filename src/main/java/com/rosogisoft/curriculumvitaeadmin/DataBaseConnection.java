@@ -2,7 +2,9 @@ package com.rosogisoft.curriculumvitaeadmin;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -51,6 +53,8 @@ public class DataBaseConnection {
 
     public static ObservableList<String> getSpecialty(){
         ObservableList<String> array = FXCollections.observableArrayList();
+        array.add("");
+
         String sqlQ = "SELECT SPECIALTYNAME FROM Specialty_Code";
         try (Connection conn = connect()) {
             Statement statement = conn.createStatement();
@@ -58,7 +62,6 @@ public class DataBaseConnection {
             while (rs.next()) {
                 array.add(rs.getString(1));
             }
-            array.add("");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -67,6 +70,8 @@ public class DataBaseConnection {
 
     public static ObservableList<String> getGroupNumber(){
         ObservableList<String> array = FXCollections.observableArrayList();
+        array.add("");
+
         String sqlQ = "SELECT DISTINCT GROUPNUMBER FROM Student";
         try (Connection conn = connect()) {
             Statement statement = conn.createStatement();
@@ -74,14 +79,13 @@ public class DataBaseConnection {
             while (rs.next()) {
                 array.add(rs.getString(1));
             }
-            array.add("");
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return array;
     }
 
-    public static ObservableList<Person> getData(String course, String groupNumber, String specialty, String name) {
+    public static ObservableList<Person> getTableData(String course, String groupNumber, String specialty, String name) {
         String sqlQ = "SELECT " +
                 "Student.ID," +
                 "Student.STUDENTNAME," +
@@ -99,7 +103,7 @@ public class DataBaseConnection {
                 "Student.GROUPNUMBER LIKE '" + course + "%' AND " +
                 "Specialty_Code.SPECIALTYNAME LIKE '" + specialty + "%' AND " +
                 "Student.GROUPNUMBER LIKE '" + groupNumber + "%' AND " +
-                "Student.STUDENTNAME LIKE '" + name + "%';";
+                "Student.STUDENTNAME LIKE '%" + name + "%';";
 
         try (Connection conn = connect()) {
             Statement statement = conn.prepareStatement(sqlQ);
@@ -118,5 +122,103 @@ public class DataBaseConnection {
             e.printStackTrace();
         }
         return personData;
+    }
+
+    public static ObservableList<Person> getData() {
+        String sqlQ = "SELECT \n" +
+                "`Student`.`ID`,\n" +
+                "`Student`.`STUDENTNAME`,\n" +
+                "`Student`.`DATEOFBIRTH`,\n" +
+                "`Student`.`GROUPNUMBER`,\n" +
+                "`Specialty_Code`.`SPECIALTYNAME`,\n" +
+                "`Student`.`TELEPHONENUMBER`,\n" +
+                "`Student`.`EMAILADDRESS`,\n" +
+                "`Student_Additional_Info`.`ADDITIONALINFO`,\n" +
+                "`Student_Additional_Info`.`FOREIGNLANGUAGE`,\n" +
+                "`Student_Additional_Info`.`DRIVERLICENSE`,\n" +
+                "`Student_Additional_Info`.`ADDITIONALCOMPETENCIES`,\n" +
+                "`Student_Additional_Info`.`SOCIALNETWORK`,\n" +
+                "`Student_Competencies`.`COMPETENCE1`,\n" +
+                "`Student_Competencies`.`COMPETENCE2`,\n" +
+                "`Student_Competencies`.`COMPETENCE3`,\n" +
+                "`Student_Competencies`.`COMPETENCE4`,\n" +
+                "`Student_Competencies`.`COMPETENCE5`,\n" +
+                "`Student_Competencies`.`COMPETENCE6`,\n" +
+                "`Student_Competencies`.`COMPETENCE7`,\n" +
+                "`Student_Competencies`.`COMPETENCE8`,\n" +
+                "`Student_Competencies`.`COMPETENCE9`,\n" +
+                "`Student_Competencies`.`COMPETENCE10`,\n" +
+                "`Student_Competencies`.`COMPETENCE11`,\n" +
+                "`Student_Competencies`.`COMPETENCE12`,\n" +
+                "`Student_Competencies`.`COMPETENCE13`,\n" +
+                "`Student_Competencies`.`COMPETENCE14`,\n" +
+                "`Student_Competencies`.`COMPETENCE15`,\n" +
+                "`Student_Soft_Skills`.`FIRSTSOFTSKILL`,\n" +
+                "`Student_Soft_Skills`.`SECONDSOFTSKILL`,\n" +
+                "`Student_Soft_Skills`.`THIRDSOFTSKILL`,\n" +
+                "`Student_Soft_Skills`.`FOURTHOFTSKILL`,\n" +
+                "`Student_Soft_Skills`.`FIVETHSOFTSKILL`,\n" +
+                "`Student_Education`.`ESTABLISHMENT`,\n" +
+                "`Student_Education`.`FACULTY`,\n" +
+                "`Student_Education`.`FORMOFSTUDY`,\n" +
+                "`Student_Education`.`YEAROFENDING`,\n" +
+                "`Student_Education`.`CITY`,\n" +
+                "`Student_Photo`.`PHOTO`\n" +
+                "FROM  Student\n" +
+                "LEFT JOIN Student_Additional_Info\n" +
+                "ON Student.ID = Student_Additional_Info.ID\n" +
+                "LEFT JOIN Student_Competencies\n" +
+                "ON Student.ID = Student_Competencies.ID\n" +
+                "LEFT JOIN Student_Soft_Skills\n" +
+                "ON Student.ID = Student_Soft_Skills.ID\n" +
+                "LEFT JOIN Student_Photo\n" +
+                "ON Student.ID = Student_Photo.ID\n" +
+                "LEFT JOIN Student_Education\n" +
+                "ON Student.ID = Student_Education.ID\n" +
+                "LEFT JOIN Specialty_Code\n" +
+                "ON Student.SPECIALTYCODE = Specialty_Code.SPECIALTYCODE;";
+        ObservableList<Person> students = FXCollections.observableArrayList();
+        try (Connection conn = connect()) {
+            Statement statement = conn.prepareStatement(sqlQ);
+            ResultSet rs = statement.executeQuery(sqlQ);
+            while (rs.next()) {
+                person = new Person();
+                person.setId(rs.getString(1));
+                person.setName(rs.getString(2));
+                person.setDateOfBirth(rs.getString(3));
+                person.setGroupNumber(rs.getString(4));
+                person.setPhoneNumber(rs.getString(5));
+                person.setSpeciality(rs.getString(6));
+                person.setMailAddress(rs.getString(7));
+                person.setAdditionalInfo(rs.getString(8));
+                person.setForeignLanguage(rs.getString(9));
+                person.setDriverLicense(rs.getString(10));
+                person.setAdditionalCompetencies(rs.getString(11));
+                person.setSocialNetwork(rs.getString(12));
+
+                boolean[] competency = new boolean[15];
+                for (int i = 13; i <= 27; i++){
+                    competency[i-13] = rs.getBoolean(i);
+                }
+                person.setCompetency(competency);
+
+                String[] softSkills = new String[6];
+                for (int i = 28; i <= 33; i++){
+                    softSkills[i - 28] = rs.getString(i);
+                }
+                person.setSoftSkills(softSkills);
+                person.setFaculty(rs.getString(34));
+                person.setFormOfStudy(rs.getString(35));
+                person.setYearOfEnding(rs.getString(36));
+                person.setCity(rs.getString(37));
+                //person.setImage((rs.getBinaryStream(38).readAllBytes()); <- Решить вопрос с временным хранением файла
+                person.showInfo();
+                System.out.println("---------------------------------------------------------------------------");
+                students.add(person);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return students;
     }
 }

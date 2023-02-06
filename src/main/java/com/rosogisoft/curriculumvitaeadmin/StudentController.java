@@ -1,10 +1,13 @@
 package com.rosogisoft.curriculumvitaeadmin;
 
+import javafx.event.ActionEvent;
+import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 public class StudentController {
     public ImageView avatarImageView;
@@ -59,4 +62,12 @@ public class StudentController {
 
     }
 
+    public void cancel(ActionEvent actionEvent) {
+        Node source = (Node) actionEvent.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+    }
+
+    public void save(ActionEvent actionEvent) {
+    }
 }
