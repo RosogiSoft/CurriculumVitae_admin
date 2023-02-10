@@ -187,8 +187,8 @@ public class DataBaseConnection {
                 person.setName(rs.getString(2));
                 person.setDateOfBirth(rs.getString(3));
                 person.setGroupNumber(rs.getString(4));
-                person.setPhoneNumber(rs.getString(5));
-                person.setSpeciality(rs.getString(6));
+                person.setPhoneNumber(rs.getString(6));
+                person.setSpeciality(rs.getString(5));
                 person.setMailAddress(rs.getString(7));
                 person.setAdditionalInfo(rs.getString(8));
                 person.setForeignLanguage(rs.getString(9));
