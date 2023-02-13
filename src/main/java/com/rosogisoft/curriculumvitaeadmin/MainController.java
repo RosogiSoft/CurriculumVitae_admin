@@ -18,8 +18,6 @@ import java.util.Objects;
 import java.util.function.Predicate;
 
 public class MainController {
-
-
     public TableView<Person> tableView;
     public TableColumn<Person, String> nameColum;
     public TableColumn<Person, String> dateOfBirthColum;
@@ -32,21 +30,17 @@ public class MainController {
     public TextField nameTextFiled;
 
     private ObservableList<Person> personData = FXCollections.observableArrayList();
-
     public void initialize(){
-        //Получаем даннные для подлкючения к БД
         DataBaseConnection.getConnectionData();
-        //Инициализируем класс с всеми необходимыми текстовыми полями
         DataContainer.getData();
+
         setChoiceBoxValues();
         updateTable();
-
     }
-    //Функция для открытия страницы студента с последующей возможностью редактирования
     public void edit(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("student_view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 900, 600);
+        Scene scene = new Scene(fxmlLoader.load(), 900, 700);
         stage.setTitle("Curriculum Vitae admin");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(tableView.getScene().getWindow());
@@ -58,26 +52,19 @@ public class MainController {
     public void generate(ActionEvent actionEvent) {
 
     }
-
     public void updateButton(ActionEvent actionEvent) {
         updateTable();
     }
-
     private void setChoiceBoxValues() {
         courseFilterFileld.setItems(DataContainer.getCourses());
         groupNumberFilterField.setItems(DataContainer.getGroups());
         specialtyFilterFiled.setItems(DataContainer.getSpecialties());
     }
-    /*
-    Путь к оптимизации - делать запрос из БД ровно один раз при первичном обновлении таблицы
-    После этого можно фильтровать данные не при помощи SQL запроса, а при помощи филтрации коллекции personData
-    Первичный запрос можно сделать из метода initialize()
-     */
+
     private void updateTable(){
         FilteredList<Person> studs = new FilteredList<>(FXCollections.observableArrayList());;
         studs.clear();
         studs = new FilteredList<>(DataContainer.getStudents());
-
         Predicate<Person> nameCheck = name -> name.getName().contains(!Objects.equals(nameTextFiled.getText(), "") ? nameTextFiled.getText() : "");
         Predicate<Person> courceCheck = cource -> cource.getGroupNumber().startsWith(!Objects.equals(courseFilterFileld.getValue(), "") ? courseFilterFileld.getValue().toString() : "");
         Predicate<Person> groupCheck = group -> group.getGroupNumber().contains(!Objects.equals(groupNumberFilterField.getValue(), "") ? groupNumberFilterField.getValue().toString() : "");
@@ -100,7 +87,6 @@ public class MainController {
             filter = filter.and(specialityCheck);
             System.out.println("Фильтр по специальности добавлен!");
         }
-
         studs.setPredicate(filter);
 
         nameColum.setCellValueFactory(new PropertyValueFactory<Person, String>("name"));

@@ -2,9 +2,7 @@ package com.rosogisoft.curriculumvitaeadmin;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -46,83 +44,6 @@ public class DataBaseConnection {
         return DriverManager.getConnection(url, user, password);
     }
 
-//Можно вынести исполения запроса в отдельный метод и передвавать туда
-//сам запрос и номер столбца откуда надо брать результат ->
-//executeQuery(String sqlQuery, int columIndex)(){...}
-//Большие таблицы не получиться заполнить
-
-    public static ObservableList<String> getSpecialty(){
-        ObservableList<String> array = FXCollections.observableArrayList();
-        array.add("");
-
-        String sqlQ = "SELECT SPECIALTYNAME FROM Specialty_Code";
-        try (Connection conn = connect()) {
-            Statement statement = conn.createStatement();
-            ResultSet rs = statement.executeQuery(sqlQ);
-            while (rs.next()) {
-                array.add(rs.getString(1));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return array;
-    }
-
-    public static ObservableList<String> getGroupNumber(){
-        ObservableList<String> array = FXCollections.observableArrayList();
-        array.add("");
-
-        String sqlQ = "SELECT DISTINCT GROUPNUMBER FROM Student";
-        try (Connection conn = connect()) {
-            Statement statement = conn.createStatement();
-            ResultSet rs = statement.executeQuery(sqlQ);
-            while (rs.next()) {
-                array.add(rs.getString(1));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return array;
-    }
-
-    public static ObservableList<Person> getTableData(String course, String groupNumber, String specialty, String name) {
-        String sqlQ = "SELECT " +
-                "Student.ID," +
-                "Student.STUDENTNAME," +
-                "Student.DATEOFBIRTH," +
-                "Student.GROUPNUMBER," +
-                "Student.TELEPHONENUMBER," +
-                "Specialty_Code.SPECIALTYNAME " +
-                "FROM " +
-                "Student AS Student " +
-                "LEFT JOIN " +
-                "Specialty_Code AS Specialty_Code " +
-                "ON " +
-                "Student.SPECIALTYCODE = Specialty_Code.SPECIALTYCODE " +
-                "WHERE " +
-                "Student.GROUPNUMBER LIKE '" + course + "%' AND " +
-                "Specialty_Code.SPECIALTYNAME LIKE '" + specialty + "%' AND " +
-                "Student.GROUPNUMBER LIKE '" + groupNumber + "%' AND " +
-                "Student.STUDENTNAME LIKE '%" + name + "%';";
-
-        try (Connection conn = connect()) {
-            Statement statement = conn.prepareStatement(sqlQ);
-            ResultSet rs = statement.executeQuery(sqlQ);
-            while (rs.next()) {
-                person = new Person();
-                person.setId(rs.getString(1));
-                person.setName(rs.getString(2));
-                person.setDateOfBirth(rs.getString(3));
-                person.setGroupNumber(rs.getString(4));
-                person.setPhoneNumber(rs.getString(5));
-                person.setSpeciality(rs.getString(6));
-                personData.add(person);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return personData;
-    }
 
     public static ObservableList<Person> getData() {
         String sqlQ = "SELECT \n" +
@@ -220,5 +141,43 @@ public class DataBaseConnection {
             e.printStackTrace();
         }
         return students;
+    }
+
+    public static ObservableList<String> getSpecialty(){
+        String sqlQ = "SELECT SPECIALTYNAME FROM Specialty_Code";
+        return executeQuery(sqlQ, 1);
+    }
+    public static ObservableList<String> getGroupNumber(){
+        String sqlQ = "SELECT DISTINCT GROUPNUMBER FROM Student";
+        return executeQuery(sqlQ, 1);
+    }
+    public static ObservableList<String> getForeignLanguages() {
+        String sqlQ = "SELECT FOREIGNLANGUAGE FROM Foreign_Language;";
+        return executeQuery(sqlQ, 1);
+    }
+    public static ObservableList<String> getDriverLicenses(){
+        String sqlQ = "SELECT DRIVERLICENSE FROM Driver_License;";
+        return executeQuery(sqlQ, 1);
+    }
+    public static ObservableList<String> getFormOfStudy() {
+        String sqlQ = "SELECT FORMOFSTUDY FROM Form_Of_Study;";
+        return executeQuery(sqlQ, 1);
+    }
+    public static ObservableList<String> getYearOfEnding() {
+        String sqlQ = "SELECT YEAROFENDING FROM Year_Of_Ending;";
+        return executeQuery(sqlQ, 1);
+    }
+    public static ObservableList<String> executeQuery(String sqlQeury, int rowIndex){
+        ObservableList<String> dataArray = FXCollections.observableArrayList();
+        try (Connection conn = connect()) {
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery(sqlQeury);
+            while (rs.next()) {
+                dataArray.add(rs.getString(rowIndex));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return dataArray;
     }
 }

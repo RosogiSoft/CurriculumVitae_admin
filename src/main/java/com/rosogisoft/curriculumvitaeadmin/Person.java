@@ -32,6 +32,8 @@ public class Person {
     private String[] softSkills;
 
     public void showInfo() {
+        String competencyInfo = "";
+
         System.out.println("Итоговая инофрмация о человеке: ");
         System.out.println("Имя: " + this.name + ", Дата рождения: " + this.dateOfBirth);
         System.out.println("Номер телефона: " + this.phoneNumber + ", Номер телефона: " + this.mailAddress);
@@ -42,8 +44,7 @@ public class Person {
         System.out.println("Водительское удостоверение: " + this.driverLicense);
         System.out.println("Дополнительные навыки: " + this.additionalCompetencies);
         System.out.println("Социальные навыки: " + Arrays.toString(this.softSkills));
-
-
+        System.out.println("Профессиональные навыки: " + Arrays.toString(this.competency));
     }
 
     //Down bellow only setters and getters of Person fields

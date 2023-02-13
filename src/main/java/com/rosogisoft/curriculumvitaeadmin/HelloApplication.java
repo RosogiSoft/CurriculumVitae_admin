@@ -20,5 +20,6 @@ public class HelloApplication extends Application {
 
     public static void main(String[] args) {
         launch();
+        //InformationPreloader.launch(HelloApplication.class, InformationPreloader.class, args); <-- Сделать класс прелоудер для экрана загрузки
     }
 }
