@@ -212,6 +212,145 @@
                   </AnchorPane>
             </content>
           </Tab>
+            <Tab text="Работа">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="536.0" prefWidth="609.0" spacing="20.0">
+                           <children>
+                              <HBox prefHeight="32.0" prefWidth="629.0">
+                                 <children>
+                                    <Label prefHeight="27.0" prefWidth="200.0" styleClass="sec_header" stylesheets="@student_style.css" text="Место работы">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="32.0" prefWidth="629.0">
+                                 <children>
+                                    <Label prefHeight="27.0" prefWidth="200.0" styleClass="sec_header" stylesheets="@student_style.css" text="Должность">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox prefHeight="32.0" prefWidth="629.0">
+                                 <children>
+                                    <Label prefHeight="27.0" prefWidth="200.0" styleClass="sec_header" stylesheets="@student_style.css" text="Дата начала работы">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="93.0" prefWidth="609.0">
+                                 <children>
+                                    <Label prefHeight="73.0" prefWidth="200.0" styleClass="sec_header" stylesheets="@student_style.css" text="Выполняеемые обязанности" wrapText="true">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextArea prefHeight="26.0" prefWidth="420.0" styleClass="text_frame" stylesheets="@student_style.css" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="20.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Производственная практика">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="536.0" prefWidth="609.0" spacing="20.0">
+                           <children>
+                              <HBox prefHeight="98.0" prefWidth="609.0">
+                                 <children>
+                                    <Label prefHeight="97.0" prefWidth="191.0" styleClass="sec_header" stylesheets="@student_style.css" text="Место прохождения производственной практики" wrapText="true">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <HBox.margin>
+                                          <Insets top="25.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="32.0" prefWidth="629.0">
+                                 <children>
+                                    <Label prefHeight="27.0" prefWidth="200.0" styleClass="sec_header" stylesheets="@student_style.css" text="Должность">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox prefHeight="32.0" prefWidth="629.0">
+                                 <children>
+                                    <Label prefHeight="27.0" prefWidth="200.0" styleClass="sec_header" stylesheets="@student_style.css" text="Дата начала ПП">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="32.0" prefWidth="629.0">
+                                 <children>
+                                    <Label prefHeight="27.0" prefWidth="200.0" styleClass="sec_header" stylesheets="@student_style.css" text="Дата окончания ПП">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="93.0" prefWidth="609.0">
+                                 <children>
+                                    <Label prefHeight="73.0" prefWidth="200.0" styleClass="sec_header" stylesheets="@student_style.css" text="Выполняеемые обязанности" wrapText="true">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextArea prefHeight="26.0" prefWidth="420.0" styleClass="text_frame" stylesheets="@student_style.css" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="20.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
             <Tab text="Компетенции">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="475.0" prefWidth="630.0">
@@ -370,6 +509,61 @@
                   </AnchorPane>
               </content>
             </Tab>
+            <Tab text="Социальные навыки">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" spacing="15.0">
+                           <padding>
+                              <Insets left="20.0" right="20.0" top="5.0" />
+                           </padding>
+                           <children>
+                              <HBox prefHeight="50.0" prefWidth="200.0" spacing="5.0">
+                                 <children>
+                                    <Label prefHeight="30.0" prefWidth="56.0" styleClass="sec_header" stylesheets="@student_style.css" text="№1." />
+                                    <ChoiceBox fx:id="skillOne" prefHeight="39.0" prefWidth="419.0" styleClass="field" stylesheets="@student_style.css">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </ChoiceBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="30.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox prefHeight="50.0" prefWidth="200.0" spacing="5.0">
+                                 <children>
+                                    <Label prefHeight="30.0" prefWidth="56.0" styleClass="sec_header" stylesheets="@student_style.css" text="№2." />
+                                    <ChoiceBox fx:id="skillTwo" prefHeight="25.0" prefWidth="419.0" styleClass="field" stylesheets="@student_style.css" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="50.0" prefWidth="200.0" spacing="5.0">
+                                 <children>
+                                    <Label prefWidth="56.0" styleClass="sec_header" stylesheets="@student_style.css" text="№3." />
+                                    <ChoiceBox fx:id="skillThree" prefHeight="25.0" prefWidth="419.0" styleClass="field" stylesheets="@student_style.css" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="50.0" prefWidth="200.0" spacing="5.0">
+                                 <children>
+                                    <Label prefWidth="56.0" styleClass="sec_header" stylesheets="@student_style.css" text="№4." />
+                                    <ChoiceBox fx:id="skillFour" prefHeight="25.0" prefWidth="419.0" styleClass="field" stylesheets="@student_style.css" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="50.0" prefWidth="200.0" spacing="5.0">
+                                 <children>
+                                    <Label prefWidth="56.0" styleClass="sec_header" stylesheets="@student_style.css" text="№5." />
+                                    <ChoiceBox fx:id="skillFive" prefHeight="25.0" prefWidth="419.0" styleClass="field" stylesheets="@student_style.css" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
             <Tab text="Дополнительная информация">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -392,16 +586,6 @@
                               <HBox prefHeight="75.0" prefWidth="619.0">
                                  <children>
                                     <Label prefHeight="60.0" prefWidth="200.0" styleClass="sec_header" stylesheets="@student_style.css" text="Проффесиоанльные навыки" wrapText="true">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextArea prefHeight="26.0" prefWidth="400.0" styleClass="text_frame" stylesheets="@student_style.css" />
-                                 </children>
-                              </HBox>
-                              <HBox prefHeight="75.0" prefWidth="619.0">
-                                 <children>
-                                    <Label prefHeight="60.0" prefWidth="200.0" styleClass="sec_header" stylesheets="@student_style.css" text="Софтскиллс" wrapText="true">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
