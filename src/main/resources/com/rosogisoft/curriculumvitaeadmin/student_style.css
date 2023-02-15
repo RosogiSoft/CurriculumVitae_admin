@@ -1,5 +1,5 @@
 .background{
-    -fx-background-color: #EBEBEB;
+    -fx-background-color: #DBE2EF;
 }
 
 .header{
@@ -21,7 +21,7 @@
 }
 
 .field{
-    -fx-background-color: #EBEBEB;
+    -fx-background-color: #DBE2EF;
     -fx-background-radius: 18px;
     -fx-border-width: 2px;
     -fx-border-color: #005EAA;
@@ -31,18 +31,29 @@
     -fx-text-fill: #002975;
 }
 
+.caption{
+    -fx-background-color: #DBE2EF;
+    -fx-font-family: "Noto Mono";
+    -fx-font-size: 16px;
+    -fx-text-fill: #002975;
+}
+
 .text_frame{
     -fx-border-width: 1.5px;
     -fx-border-color: #005EAA;
-    -fx-background-color: #ffffff;
+    -fx-background-color: #DBE2EF;
     -fx-font-family: "Noto Mono";
     -fx-font-size: 16px;
     -fx-text-fill: #005EAA;
 }
 
+.text-area .content{
+      -fx-background-color: #DBE2EF;
+  }
+
 .check-box .box {
     -fx-background-radius: 15px;
-    -fx-background-color: #EBEBEB;
+    -fx-background-color: #DBE2EF;
     -fx-border-width: 1px;
     -fx-border-color: #FF7614;
     -fx-border-radius: 50px;
@@ -62,12 +73,12 @@
 }
 
 .scroll-pane {
-    -fx-background-color: #EBEBEB;
+    -fx-background-color: #DBE2EF;
 
 }
 
 .filter_field{
-    -fx-background-color: #EBEBEB;
+    -fx-background-color: #DBE2EF;
     -fx-background-radius: 18px;
     -fx-border-width: 2px;
     -fx-border-color: #005EAA;
@@ -92,5 +103,50 @@
     -fx-background-color: #0042bb;
     -fx-font-family: "Vela Sans ExtBd";
     -fx-font-size: 16px;
+    -fx-text-fill: #EBEBEB;
+}
+
+
+.cancel_button{
+    -fx-background-radius: 18px;
+    -fx-background-color: #2e4f8d;
+    -fx-font-family: "Vela Sans ExtBd";
+    -fx-font-size: 16px;
+    -fx-text-fill: #EBEBEB;
+}
+
+
+.table-view .column-header-background .label{
+     -fx-background-color: #005EAA;
+     -fx-text-fill: #EBEBEB;
+ }
+
+.table-view .column-header {
+    -fx-background-color: #005EAA;
+}
+
+
+.tab-pane>*.tab-header-area>*.tab-header-background
+{
+    -fx-background-color: #b8c6e0;
+}
+
+.tab:selected .tab-label {
+    -fx-text-fill: #EBEBEB;
+}
+
+.tab:selected {
+    -fx-background-color: #005EAA;
+}
+
+.tab-label {
+    -fx-text-fill: #EBEBEB;
+}
+
+.tab {
+    -fx-background-color: #5ca5e0;
+}
+
+.tab-label {
     -fx-text-fill: #EBEBEB;
 }
