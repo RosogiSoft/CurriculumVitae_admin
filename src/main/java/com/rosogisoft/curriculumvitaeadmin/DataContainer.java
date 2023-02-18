@@ -12,6 +12,7 @@ public class DataContainer {
     private static ObservableList<String> yearOfEndings = FXCollections.observableArrayList();
     private static ObservableList<String> foreignLanguages = FXCollections.observableArrayList();
     private static ObservableList<String> driverLicenses = FXCollections.observableArrayList();
+    private static Person selectedStudent;
 
     public static void getData(){
         setSpecialties();
@@ -42,9 +43,6 @@ public class DataContainer {
     }
     public static void setStudents() {
         students = DataBaseConnection.getData();
-        for (Person person : students){
-            person.showInfo();
-        }
     }
     public static void setCourses() {
         courses = FXCollections.observableArrayList(
@@ -60,6 +58,10 @@ public class DataContainer {
     public static void setGroups() {
         groups = DataBaseConnection.getGroupNumber();
     }
+    public static void setSelectedStudent(Person selectedStudent) {
+        DataContainer.selectedStudent = selectedStudent;
+    }
+
 
     //Getters
     public static ObservableList<String> getForeignLanguages() {
@@ -86,7 +88,9 @@ public class DataContainer {
     public static ObservableList<String> getGroups() {
         return groups;
     }
-
+    public static Person getSelectedStudent() {
+        return selectedStudent;
+    }
 
 
 

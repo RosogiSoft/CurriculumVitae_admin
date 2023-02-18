@@ -38,6 +38,7 @@ public class MainController {
         updateTable();
     }
     public void edit(ActionEvent actionEvent) throws IOException {
+        DataContainer.setSelectedStudent(tableView.getSelectionModel().getSelectedItem());
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("student_view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 900, 700);

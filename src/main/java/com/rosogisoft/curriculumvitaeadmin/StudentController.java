@@ -55,7 +55,8 @@ public class StudentController {
         Так же добавить перечень выбранных компетенций
          */
         //Добавление в чекбоксов компетенций в массив
-        setChekboxValues();
+        //setChekboxValues();
+        //setViewData(DataContainer.getSelectedStudent()); //Заполнение студента значениями
         for (CheckBox checkBox : checkBoxes){
             checkBoxes.add(checkBox);
         }
@@ -74,23 +75,25 @@ public class StudentController {
 
     public void setViewData(Person person){
         //avatarImageView.setImage();
-        nameTextField.setText(person.getName());
-        birthDateTextField.setText(person.getDateOfBirth());
-        phoneNumberTextField.setText(person.getPhoneNumber());
-        mailTextField.setText(person.getMailAddress());
-        groupNumberTextField.setText(person.getGroupNumber());
-        specialityChoiceBox.setValue(person.getSpeciality());
+        nameTextField.setText(person.getName()!= null ? person.getName() : "Нет информации");
+        birthDateTextField.setText(person.getDateOfBirth()!= null ? person.getDateOfBirth() : "Нет информации");
+        phoneNumberTextField.setText(person.getPhoneNumber()!= null ? person.getPhoneNumber() : "Нет информации");
+        mailTextField.setText(person.getMailAddress()!= null ? person.getMailAddress() : "Нет информации");
+        groupNumberTextField.setText(person.getGroupNumber()!= null ? person.getGroupNumber() : "Нет информации");
+        specialityChoiceBox.setValue(person.getSpeciality()!= null ? person.getSpeciality() : "Нет информации");
         //Инициализация текста для списка компетенций
-        additionalCompetencyTextArea.setText(person.getAdditionalCompetencies());
-        additionalInfoTextArea.setText(person.getAdditionalInfo());
-        foreignLanguageChoiceBox.setValue(person.getForeignLanguage());
-        driverLicenceChoiceBox.setValue(person.getDriverLicense());
-        socialNetworkTextArea.setText(person.getSocialNetwork());
-        establishmentTextField.setText(person.getEstablishment());
-        facultyTextField.setText(person.getFaculty());
-        formOfStudyChoiceBox.setValue(person.getFormOfStudy());
-        yearOfEndingChoiceBox.setValue(person.getYearOfEnding());
-        cityTextField.setText(person.getCity());
+        /*
+        additionalCompetencyTextArea.setText(person.getAdditionalCompetencies()!= null ? person.getAdditionalCompetencies() : "Нет информации");
+        additionalInfoTextArea.setText(person.getAdditionalInfo()!= null ? person.getAdditionalInfo() : "Нет информации");
+        foreignLanguageChoiceBox.setValue(person.getForeignLanguage()!= null ? person.getForeignLanguage() : "Нет информации");
+        driverLicenceChoiceBox.setValue(person.getDriverLicense()!= null ? person.getDriverLicense() : "Нет информации");
+        socialNetworkTextArea.setText(person.getSocialNetwork()!= null ? person.getSocialNetwork() : "Нет информации");
+        establishmentTextField.setText(person.getEstablishment()!= null ? person.getEstablishment() : "Нет информации");
+        facultyTextField.setText(person.getFaculty()!= null ? person.getFaculty() : "Нет информации");
+        formOfStudyChoiceBox.setValue(person.getFormOfStudy()!= null ? person.getFormOfStudy() : "Нет информации");
+        yearOfEndingChoiceBox.setValue(person.getYearOfEnding()!= null ? person.getYearOfEnding() : "Нет информации");
+        cityTextField.setText(person.getCity()!= null ? person.getCity() : "Нет информации");
+        */
     }
 
     public void cancel(ActionEvent actionEvent) {
