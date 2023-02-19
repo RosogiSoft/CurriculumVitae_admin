@@ -15,7 +15,6 @@ public class DataBaseConnection {
     private static String user;
     private static String password;
     private static Person person;
-    private static ObservableList<Person> personData = FXCollections.observableArrayList();
     public static void getConnectionData(){
         FileInputStream fileInputStream;
         Properties properties = new Properties();
@@ -167,8 +166,9 @@ public class DataBaseConnection {
         String sqlQ = "SELECT YEAROFENDING FROM Year_Of_Ending;";
         return executeQuery(sqlQ, 1);
     }
-    public static ObservableList<String> executeQuery(String sqlQeury, int rowIndex){
+    private static ObservableList<String> executeQuery(String sqlQeury, int rowIndex){
         ObservableList<String> dataArray = FXCollections.observableArrayList();
+        dataArray.add(""); //Для сброса фильтра
         try (Connection conn = connect()) {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(sqlQeury);

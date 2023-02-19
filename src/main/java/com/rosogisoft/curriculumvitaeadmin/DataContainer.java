@@ -14,17 +14,6 @@ public class DataContainer {
     private static ObservableList<String> driverLicenses = FXCollections.observableArrayList();
     private static Person selectedStudent;
 
-    public static void getData(){
-        setSpecialties();
-        setCourses();
-        setGroups();
-        setStudents();
-        setForeignLanguages();
-        setDriverLicenses();
-        setFormOfStudy();
-        setYearOfEnding();
-    }
-
     //Setters
     public static void setForeignLanguages() {
         foreignLanguages = DataBaseConnection.getForeignLanguages();

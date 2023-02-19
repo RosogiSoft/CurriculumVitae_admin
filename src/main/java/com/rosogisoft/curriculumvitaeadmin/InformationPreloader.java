@@ -8,43 +8,41 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class InformationPreloader extends Preloader {
 
     private Stage preloaderStage;
-    Scene scene;
-    Parent root;
+    private Scene scene;
 
     public InformationPreloader(){
 
     }
 
-    public void initialize() throws IOException {
-        System.out.println("Инициализация preloader!");
+    public void init() throws IOException {
+        System.out.println("Инициализация init preloader!");
+        Parent root1 = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("loading_view.fxml")));
+        scene = new Scene(root1);
 
     }
 
     @Override
     public void start(Stage stage) throws IOException {
-        System.out.println("Инициализация start preloader");
-        preloaderStage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("loading_view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 900, 700);
+        System.out.println("Инициализация start preloader!");
+
+        this.preloaderStage = stage;
         preloaderStage.setTitle("Loading...");
         preloaderStage.setScene(scene);
         preloaderStage.setResizable(false);
-        preloaderStage.initStyle(StageStyle.UNDECORATED);
+        //preloaderStage.initStyle(StageStyle.UNDECORATED);
         preloaderStage.show();
-
     }
 
     @Override
     public void handleApplicationNotification(PreloaderNotification preloaderNotification) {//preloaderNotification <- double
-        DataBaseConnection.getConnectionData();
-
         if (preloaderNotification instanceof ProgressNotification){
-            LoadingViewController.progressBar.setProgress(((ProgressNotification) preloaderNotification).getProgress());
-            //LoadingViewController.progressIndicator.setText("Загрузка: " + ((ProgressNotification) preloaderNotification).getProgress() + "...");
+            LoadingViewController.progressBarS.setProgress(((ProgressNotification) preloaderNotification).getProgress());
+            LoadingViewController.progressIndicatorS.setText("Загрузка: " + (((ProgressNotification) preloaderNotification).getProgress() * 100) + "% ...");
         }
     }
 

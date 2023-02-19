@@ -35,8 +35,9 @@ public class Person {
         String competencyInfo = "";
 
         System.out.println("Итоговая инофрмация о человеке: ");
+        System.out.println("ID: " + this.id);
         System.out.println("Имя: " + this.name + ", Дата рождения: " + this.dateOfBirth);
-        System.out.println("Номер телефона: " + this.phoneNumber + ", Номер телефона: " + this.mailAddress);
+        System.out.println("Номер телефона: " + this.phoneNumber + ", Почта: " + this.mailAddress);
         System.out.println("Социальные сети: " + this.socialNetwork);
         System.out.println("Номер группы: " + this.groupNumber + "Специальность: " + this.speciality);
         System.out.println("Дополнительная информация: " + this.additionalInfo);

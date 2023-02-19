@@ -31,9 +31,6 @@ public class MainController {
 
     private ObservableList<Person> personData = FXCollections.observableArrayList();
     public void initialize(){
-        DataBaseConnection.getConnectionData();
-        DataContainer.getData();
-
         setChoiceBoxValues();
         updateTable();
     }
