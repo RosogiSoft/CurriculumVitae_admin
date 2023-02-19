@@ -33,6 +33,9 @@ public class DataContainer {
     public static void setStudents() {
         students = DataBaseConnection.getData();
     }
+    public static void setStudents(ObservableList<Person> studentsList) {
+        students = studentsList;
+    }
     public static void setCourses() {
         courses = FXCollections.observableArrayList(
                 new String(""),

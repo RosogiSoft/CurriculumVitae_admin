@@ -83,7 +83,8 @@ public class DataBaseConnection {
                 "`Student_Education`.`FORMOFSTUDY`,\n" +
                 "`Student_Education`.`YEAROFENDING`,\n" +
                 "`Student_Education`.`CITY`,\n" +
-                "`Student_Photo`.`PHOTO`\n" +
+                "`Student_Photo`.`PHOTO`, \n" +
+                "`Student`.`SPECIALTYCODE`\n" +
                 "FROM  Student\n" +
                 "LEFT JOIN Student_Additional_Info\n" +
                 "ON Student.ID = Student_Additional_Info.ID\n" +
@@ -116,9 +117,9 @@ public class DataBaseConnection {
                 person.setAdditionalCompetencies(rs.getString(11));
                 person.setSocialNetwork(rs.getString(12));
 
-                boolean[] competency = new boolean[15];
+                String[] competency = new String[15];
                 for (int i = 13; i <= 27; i++){
-                    competency[i-13] = rs.getBoolean(i);
+                    competency[i-13] = rs.getString(i);
                 }
                 person.setCompetency(competency);
 
@@ -132,6 +133,7 @@ public class DataBaseConnection {
                 person.setYearOfEnding(rs.getString(36));
                 person.setCity(rs.getString(37));
                 //person.setImage((rs.getBinaryStream(38).readAllBytes()); <- Решить вопрос с временным хранением файла
+                person.setSpecialityCode(rs.getInt(39));
                 person.showInfo();
                 System.out.println("---------------------------------------------------------------------------");
                 students.add(person);

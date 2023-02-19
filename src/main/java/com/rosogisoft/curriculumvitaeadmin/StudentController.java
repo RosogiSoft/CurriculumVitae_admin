@@ -2,11 +2,7 @@ package com.rosogisoft.curriculumvitaeadmin;
 
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -47,53 +43,71 @@ public class StudentController {
     public ChoiceBox yearOfEndingChoiceBox;
     public TextField cityTextField;
     public List<CheckBox> checkBoxes = new ArrayList<>();
+    public ProgressBar savingProgressBar;
 
     public void initialize(){
-        /*
-        Нужно проинициализировать поля с выбором,такие как:
-        Специальность, Иностранный язык, права, форма обучения, год окончания
-        Так же добавить перечень выбранных компетенций
-         */
-        //Добавление в чекбоксов компетенций в массив
-        //setChekboxValues();
-        //setViewData(DataContainer.getSelectedStudent()); //Заполнение студента значениями
-        for (CheckBox checkBox : checkBoxes){
-            checkBoxes.add(checkBox);
-        }
+        setChekboxValues();
+        setViewData(DataContainer.getSelectedStudent()); //Заполнение студента значениями
     }
 
     private void setChekboxValues(){
-        specialityChoiceBox.setValue(DataContainer.getSpecialties());
+        checkBoxes.add(checkBox1);
+        checkBoxes.add(checkBox2);
+        checkBoxes.add(checkBox3);
+        checkBoxes.add(checkBox4);
+        checkBoxes.add(checkBox5);
+        checkBoxes.add(checkBox6);
+        checkBoxes.add(checkBox7);
+        checkBoxes.add(checkBox8);
+        checkBoxes.add(checkBox9);
+        checkBoxes.add(checkBox10);
+        checkBoxes.add(checkBox11);
+        checkBoxes.add(checkBox12);
+        checkBoxes.add(checkBox13);
+        checkBoxes.add(checkBox14);
+        checkBoxes.add(checkBox15);
+        specialityChoiceBox.setItems(DataContainer.getSpecialties());
         formOfStudyChoiceBox.setValue(DataContainer.getFormOfStudy());
-        driverLicenceChoiceBox.setValue(DataContainer.getDriverLicenses());
-        formOfStudyChoiceBox.setValue(DataContainer.getFormOfStudy());
-        yearOfEndingChoiceBox.setValue(DataContainer.getYearOfEnding());
+        driverLicenceChoiceBox.setItems(DataContainer.getDriverLicenses());
+        formOfStudyChoiceBox.setItems(DataContainer.getFormOfStudy());
+        yearOfEndingChoiceBox.setItems(DataContainer.getYearOfEnding());
     }
 
 
 
-
+    //TODO: Разбить метод на состовляюзие на каждый экран
+    //TODO: Дописать заполнение для всех полей на view
     public void setViewData(Person person){
-        //avatarImageView.setImage();
-        nameTextField.setText(person.getName()!= null ? person.getName() : "Нет информации");
-        birthDateTextField.setText(person.getDateOfBirth()!= null ? person.getDateOfBirth() : "Нет информации");
-        phoneNumberTextField.setText(person.getPhoneNumber()!= null ? person.getPhoneNumber() : "Нет информации");
-        mailTextField.setText(person.getMailAddress()!= null ? person.getMailAddress() : "Нет информации");
-        groupNumberTextField.setText(person.getGroupNumber()!= null ? person.getGroupNumber() : "Нет информации");
-        specialityChoiceBox.setValue(person.getSpeciality()!= null ? person.getSpeciality() : "Нет информации");
-        //Инициализация текста для списка компетенций
-        /*
-        additionalCompetencyTextArea.setText(person.getAdditionalCompetencies()!= null ? person.getAdditionalCompetencies() : "Нет информации");
-        additionalInfoTextArea.setText(person.getAdditionalInfo()!= null ? person.getAdditionalInfo() : "Нет информации");
-        foreignLanguageChoiceBox.setValue(person.getForeignLanguage()!= null ? person.getForeignLanguage() : "Нет информации");
-        driverLicenceChoiceBox.setValue(person.getDriverLicense()!= null ? person.getDriverLicense() : "Нет информации");
-        socialNetworkTextArea.setText(person.getSocialNetwork()!= null ? person.getSocialNetwork() : "Нет информации");
-        establishmentTextField.setText(person.getEstablishment()!= null ? person.getEstablishment() : "Нет информации");
-        facultyTextField.setText(person.getFaculty()!= null ? person.getFaculty() : "Нет информации");
-        formOfStudyChoiceBox.setValue(person.getFormOfStudy()!= null ? person.getFormOfStudy() : "Нет информации");
-        yearOfEndingChoiceBox.setValue(person.getYearOfEnding()!= null ? person.getYearOfEnding() : "Нет информации");
-        cityTextField.setText(person.getCity()!= null ? person.getCity() : "Нет информации");
-        */
+        //ВКЛАДКА "Личная информация"
+        //avatarImageView.setImage(); <-- Пока нет логики хранения файла внутри Person
+        nameTextField.setText(valueCheck(person.getName()));
+        birthDateTextField.setText(valueCheck(person.getDateOfBirth()));
+        phoneNumberTextField.setText(valueCheck(person.getPhoneNumber()));
+        mailTextField.setText(valueCheck(person.getPhoneNumber()));
+        groupNumberTextField.setText(valueCheck(person.getGroupNumber()));
+        specialityChoiceBox.setValue(valueCheck(person.getSpeciality()));
+        socialNetworkTextArea.setText(valueCheck(person.getSocialNetwork()));
+        //ВКЛАДКА "Дополнительная информация"
+        additionalInfoTextArea.setText(valueCheck(person.getAdditionalInfo()));
+        additionalCompetencyTextArea.setText(valueCheck(person.getAdditionalCompetencies()));
+        foreignLanguageChoiceBox.setValue(valueCheck(person.getForeignLanguage()));
+        driverLicenceChoiceBox.setValue(valueCheck(person.getDriverLicense()));
+        //ВКЛАДКА "Образование"
+        establishmentTextField.setText(valueCheck(person.getFaculty()));
+        facultyTextField.setText(valueCheck(person.getFaculty()));
+        formOfStudyChoiceBox.setValue(valueCheck(person.getFormOfStudy()));
+        yearOfEndingChoiceBox.setValue(valueCheck(person.getYearOfEnding()));
+        cityTextField.setText(valueCheck(person.getCity()));
+
+
+    }
+
+    private String valueCheck(String value){
+        if (value == null){
+            return "Нет информаци";
+        } else {
+            return value;
+        }
     }
 
     public void cancel(ActionEvent actionEvent) {
@@ -101,7 +115,11 @@ public class StudentController {
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
     }
-
+    //TODO: Написать логику для сохранения данных
+    //Во второй итерации оптимизации необходимо сделать проверку значений, т.е. если не изменено - то и схранять поле не нужно
     public void save(ActionEvent actionEvent) {
+        savingProgressBar.setProgress(0.5);
+        savingProgressBar.setVisible(true);
+        DataContainer.getSelectedStudent().showInfo();
     }
 }

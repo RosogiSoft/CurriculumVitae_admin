@@ -27,7 +27,7 @@ public class Person {
     private String yearOfEnding;
 
     private String city;
-    private boolean[] competency = new boolean[15];
+    private String[] competency = new String[15];
     private String specialtyInfo;
     private String[] softSkills;
 
@@ -39,7 +39,7 @@ public class Person {
         System.out.println("Имя: " + this.name + ", Дата рождения: " + this.dateOfBirth);
         System.out.println("Номер телефона: " + this.phoneNumber + ", Почта: " + this.mailAddress);
         System.out.println("Социальные сети: " + this.socialNetwork);
-        System.out.println("Номер группы: " + this.groupNumber + "Специальность: " + this.speciality);
+        System.out.println("Номер группы: " + this.groupNumber + ", Специальность: " + this.speciality + " (" + this.specialityCode + ")");
         System.out.println("Дополнительная информация: " + this.additionalInfo);
         System.out.println("Иностранный язык: " + this.foreignLanguage);
         System.out.println("Водительское удостоверение: " + this.driverLicense);
@@ -130,7 +130,7 @@ public class Person {
         this.driverLicense = driverLicense;
     }
     public String getAdditionalCompetencies() {
-        return additionalCompetencies;
+       return additionalCompetencies;
     }
     public void setAdditionalCompetencies(String additionalCompetencies) {
         this.additionalCompetencies = additionalCompetencies;
@@ -171,10 +171,10 @@ public class Person {
     public void setCity(String city) {
         this.city = city;
     }
-    public boolean[] getCompetency() {
+    public String[] getCompetency() {
         return competency;
     }
-    public void setCompetency(boolean[] competency) {
+    public void setCompetency(String[] competency) {
         this.competency = competency;
     }
     public String[] getSoftSkills() {

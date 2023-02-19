@@ -51,7 +51,7 @@ public class InformationPreloader extends Preloader {
         StateChangeNotification.Type type = stateChangeNotification.getType();
         switch (type){
             case BEFORE_START:
-                System.out.println("BEFORE_START");
+                //System.out.println("BEFORE_START");
                 preloaderStage.hide();
                 break;
         }

@@ -94,11 +94,19 @@ public class MainController {
         phoneNumberColum.setCellValueFactory(new PropertyValueFactory<Person, String>("phoneNumber"));
         tableView.setItems(studs);
         System.out.println("_______________________");
-        System.out.println("Обновление выполнено!");
+        System.out.println("Поиск выполнен!");
     }
     public void keyPressedNameTextField(KeyEvent keyEvent) {
         if (keyEvent.getCode().equals(KeyCode.ENTER)) {
             updateTable();
         }
+    }
+
+    //TODO: В последствии нужно будет добавить обработчики для всех остальных кнопок в MenuBar
+    //Кнопка в MenuBar
+    public void updateStudents(ActionEvent actionEvent) {
+        DataBaseConnection.getData();
+        DataContainer.setStudents(DataBaseConnection.getData());
+        updateTable();
     }
 }
