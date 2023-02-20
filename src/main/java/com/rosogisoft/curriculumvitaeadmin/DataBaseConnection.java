@@ -168,6 +168,10 @@ public class DataBaseConnection {
         String sqlQ = "SELECT YEAROFENDING FROM Year_Of_Ending;";
         return executeQuery(sqlQ, 1);
     }
+    public static ObservableList<String> getSoftSkills() {
+        String sqlQ = "SELECT SOFTSKILLS FROM Soft_Skills;";
+        return executeQuery(sqlQ, 1);
+    }
     private static ObservableList<String> executeQuery(String sqlQeury, int rowIndex){
         ObservableList<String> dataArray = FXCollections.observableArrayList();
         dataArray.add(""); //Для сброса фильтра

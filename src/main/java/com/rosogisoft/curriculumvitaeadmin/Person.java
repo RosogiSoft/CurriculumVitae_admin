@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class Person {
+    //TODO: Отсортировать все атрибуты по порядку и разбить их на группы
     private String id;
     private String name;
     private String dateOfBirth;
@@ -25,11 +26,18 @@ public class Person {
     private String faculty;
     private String formOfStudy;
     private String yearOfEnding;
-
     private String city;
     private String[] competency = new String[15];
     private String specialtyInfo;
     private String[] softSkills;
+    private String companyNameJob;
+    private String positionJob;
+    private String experienceJob;
+    private String functionJob;
+    private String companyNamePractice;
+    private String positionPractice;
+    private String experiencePractice;
+    private String functionPractice;
 
     public void showInfo() {
         String competencyInfo = "";
@@ -47,8 +55,56 @@ public class Person {
         System.out.println("Социальные навыки: " + Arrays.toString(this.softSkills));
         System.out.println("Профессиональные навыки: " + Arrays.toString(this.competency));
     }
-
     //Down bellow only setters and getters of Person fields
+    //TODO: Разделить на все на геттеры и сеттеры (отдельно) и остортировать по порядку
+    public String getCompanyNameJob() {
+        return companyNameJob;
+    }
+    public void setCompanyNameJob(String companyNameJob) {
+        this.companyNameJob = companyNameJob;
+    }
+    public String getPositionJob() {
+        return positionJob;
+    }
+    public void setPositionJob(String positionJob) {
+        this.positionJob = positionJob;
+    }
+    public String getExperienceJob() {
+        return experienceJob;
+    }
+    public void setExperienceJob(String experienceJob) {
+        this.experienceJob = experienceJob;
+    }
+    public String getFunctionJob() {
+        return functionJob;
+    }
+    public void setFunctionJob(String functionJob) {
+        this.functionJob = functionJob;
+    }
+    public String getCompanyNamePractice() {
+        return companyNamePractice;
+    }
+    public void setCompanyNamePractice(String companyNamePractice) {
+        this.companyNamePractice = companyNamePractice;
+    }
+    public String getPositionPractice() {
+        return positionPractice;
+    }
+    public void setPositionPractice(String positionPractice) {
+        this.positionPractice = positionPractice;
+    }
+    public String getExperiencePractice() {
+        return experiencePractice;
+    }
+    public void setExperiencePractice(String experiencePractice) {
+        this.experiencePractice = experiencePractice;
+    }
+    public String getFunctionPractice() {
+        return functionPractice;
+    }
+    public void setFunctionPractice(String functionPractice) {
+        this.functionPractice = functionPractice;
+    }
     public String getSpecialtyInfo() {
         return specialtyInfo;
     }

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentController {
+    //TODO: отсортировать атрибуты по порядку вхождения
     public ImageView avatarImageView;
     public TextField nameTextField;
     public TextField birthDateTextField;
@@ -44,13 +45,28 @@ public class StudentController {
     public TextField cityTextField;
     public List<CheckBox> checkBoxes = new ArrayList<>();
     public ProgressBar savingProgressBar;
+    public TextField companyNameJobTextField;
+    public TextField positionJobTextField;
+    public TextField experienceJobTextField;
+    public TextArea functionJobTextArea;
+    public TextField companyNamePracticeTextField;
+    public TextField positionPracticeTextField;
+    public TextField experiencePracticeTextField;
+    public TextArea functionPracticeTextArea;
+    public List<ChoiceBox<String>> choiceBoxes = new ArrayList<>();
+    public ChoiceBox skillOne;
+    public ChoiceBox skillTwo;
+    public ChoiceBox skillThree;
+    public ChoiceBox skillFour;
+    public ChoiceBox skillFive;
 
     public void initialize(){
+        prepareCheckboxes();
         setChekboxValues();
         setViewData(DataContainer.getSelectedStudent()); //Заполнение студента значениями
     }
 
-    private void setChekboxValues(){
+    private void prepareCheckboxes(){
         checkBoxes.add(checkBox1);
         checkBoxes.add(checkBox2);
         checkBoxes.add(checkBox3);
@@ -66,11 +82,24 @@ public class StudentController {
         checkBoxes.add(checkBox13);
         checkBoxes.add(checkBox14);
         checkBoxes.add(checkBox15);
+
+        choiceBoxes.add(skillOne);
+        choiceBoxes.add(skillTwo);
+        choiceBoxes.add(skillThree);
+        choiceBoxes.add(skillFour);
+        choiceBoxes.add(skillFive);
+
+    }
+
+    private void setChekboxValues(){
         specialityChoiceBox.setItems(DataContainer.getSpecialties());
-        formOfStudyChoiceBox.setValue(DataContainer.getFormOfStudy());
+        formOfStudyChoiceBox.setItems(DataContainer.getFormOfStudy());
         driverLicenceChoiceBox.setItems(DataContainer.getDriverLicenses());
         formOfStudyChoiceBox.setItems(DataContainer.getFormOfStudy());
         yearOfEndingChoiceBox.setItems(DataContainer.getYearOfEnding());
+        for (int i = 0; i < choiceBoxes.size(); i++){
+            choiceBoxes.get(i).setItems(DataContainer.getSoftSkills());
+        }
     }
 
 
@@ -98,8 +127,20 @@ public class StudentController {
         formOfStudyChoiceBox.setValue(valueCheck(person.getFormOfStudy()));
         yearOfEndingChoiceBox.setValue(valueCheck(person.getYearOfEnding()));
         cityTextField.setText(valueCheck(person.getCity()));
-
-
+        //ВКЛАДКА "Работа"
+        companyNameJobTextField.setText(valueCheck(person.getCompanyNameJob()));
+        positionJobTextField.setText(valueCheck(person.getPositionJob()));
+        experienceJobTextField.setText(valueCheck(person.getExperienceJob()));
+        functionJobTextArea.setText(valueCheck(person.getFunctionJob()));
+        //ВКЛАДКА "Практика"
+        companyNamePracticeTextField.setText(valueCheck(person.getCompanyNamePractice()));
+        positionPracticeTextField.setText(valueCheck(person.getPositionPractice()));
+        experiencePracticeTextField.setText(valueCheck(person.getExperiencePractice()));
+        functionPracticeTextArea.setText(valueCheck(person.getFunctionPractice()));
+        //ВКЛАДКА "Социальные навыки"
+        for (int i = 0; i < choiceBoxes.size(); i++){
+            choiceBoxes.get(i).setValue(valueCheck(person.getSoftSkills()[i]));
+        }
     }
 
     private String valueCheck(String value){

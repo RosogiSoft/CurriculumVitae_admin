@@ -32,11 +32,14 @@ public class HelloApplication extends Application {
         System.out.println("Загрузка годов окончания....");
         DataContainer.setYearOfEnding();
         notifyPreloader(new Preloader.ProgressNotification(0.8));
-        System.out.println("Загрузка студентов");
-        DataContainer.setStudents();
+        System.out.println("Загрузка социальных навыков...");
+        DataContainer.setSoftSkills();
         notifyPreloader(new Preloader.ProgressNotification(0.9));
+        System.out.println("Загрузка студентов...");
+        DataContainer.setStudents();
         System.out.println("Загрузка завершена!");
         notifyPreloader(new Preloader.ProgressNotification(1.0));
+
 
     }
     @Override

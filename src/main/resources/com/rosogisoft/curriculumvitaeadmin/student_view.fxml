@@ -231,7 +231,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
+                                    <TextField fx:id="companyNameJobTextField" prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
                                  </children>
                               </HBox>
                               <HBox prefHeight="32.0" prefWidth="629.0">
@@ -244,7 +244,7 @@
                                           <Insets />
                                        </HBox.margin>
                                     </Label>
-                                    <TextField prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
+                                    <TextField fx:id="positionJobTextField" prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
                                  </children>
                                  <VBox.margin>
                                     <Insets />
@@ -257,7 +257,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
+                                    <TextField fx:id="experienceJobTextField" prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
                                  </children>
                               </HBox>
                               <HBox prefHeight="93.0" prefWidth="609.0">
@@ -267,7 +267,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextArea prefHeight="26.0" prefWidth="420.0" styleClass="text_frame" stylesheets="@student_style.css" />
+                                    <TextArea fx:id="functionJobTextArea" prefHeight="26.0" prefWidth="420.0" styleClass="text_frame" stylesheets="@student_style.css" />
                                  </children>
                               </HBox>
                            </children>
@@ -292,7 +292,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css">
+                                    <TextField fx:id="companyNamePracticeTextField" prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>
@@ -312,32 +312,23 @@
                                           <Insets />
                                        </HBox.margin>
                                     </Label>
-                                    <TextField prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
+                                    <TextField fx:id="positionPracticeTextField" prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
                                  </children>
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
                               </HBox>
-                              <HBox prefHeight="32.0" prefWidth="629.0">
+                              <HBox prefHeight="75.0" prefWidth="609.0">
                                  <children>
-                                    <Label prefHeight="27.0" prefWidth="200.0" styleClass="sec_header" stylesheets="@student_style.css" text="Дата начала ПП">
+                                    <Label prefHeight="76.0" prefWidth="192.0" styleClass="sec_header" stylesheets="@student_style.css" text="Время прохождения практики" wrapText="true">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
+                                    <TextField fx:id="experiencePracticeTextField" prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
                                  </children>
                               </HBox>
-                              <HBox prefHeight="32.0" prefWidth="629.0">
-                                 <children>
-                                    <Label prefHeight="27.0" prefWidth="200.0" styleClass="sec_header" stylesheets="@student_style.css" text="Дата окончания ПП">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
-                                 </children>
-                              </HBox>
+                              <HBox prefHeight="32.0" prefWidth="629.0" />
                               <HBox prefHeight="93.0" prefWidth="609.0">
                                  <children>
                                     <Label prefHeight="73.0" prefWidth="200.0" styleClass="sec_header" stylesheets="@student_style.css" text="Выполняеемые обязанности" wrapText="true">
@@ -345,7 +336,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextArea prefHeight="26.0" prefWidth="420.0" styleClass="text_frame" stylesheets="@student_style.css" />
+                                    <TextArea fx:id="functionPracticeTextArea" prefHeight="26.0" prefWidth="420.0" styleClass="text_frame" stylesheets="@student_style.css" />
                                  </children>
                               </HBox>
                            </children>
