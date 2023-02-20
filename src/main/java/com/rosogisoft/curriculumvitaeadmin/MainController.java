@@ -109,4 +109,16 @@ public class MainController {
         DataContainer.setStudents(DataBaseConnection.getData());
         updateTable();
     }
+
+    public void changeData(ActionEvent actionEvent) {
+
+    }
+
+    public void aboutProgram(ActionEvent actionEvent) {
+
+    }
+
+    public void contacts(ActionEvent actionEvent) {
+
+    }
 }
