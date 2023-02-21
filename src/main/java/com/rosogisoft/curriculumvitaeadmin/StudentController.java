@@ -93,6 +93,7 @@ public class StudentController {
 
     private void setChekboxValues(){
         specialityChoiceBox.setItems(DataContainer.getSpecialties());
+        foreignLanguageChoiceBox.setItems(DataContainer.getForeignLanguages());
         formOfStudyChoiceBox.setItems(DataContainer.getFormOfStudy());
         driverLicenceChoiceBox.setItems(DataContainer.getDriverLicenses());
         formOfStudyChoiceBox.setItems(DataContainer.getFormOfStudy());
@@ -162,5 +163,25 @@ public class StudentController {
         savingProgressBar.setProgress(0.5);
         savingProgressBar.setVisible(true);
         DataContainer.getSelectedStudent().showInfo();
+        System.out.println("---------------------------------------------------------------");
+        DataBaseConnection.saveData(getChangedStudentInfo());
+        System.out.println("Изменения сохранены!");
+    }
+    //TODO: обработать все поля и обернуть все в одну транзакцию
+    private Person getChangedStudentInfo(){
+        Person person = DataContainer.getSelectedStudent();
+
+        person.setName(nameTextField.getText());
+        person.setDateOfBirth(birthDateTextField.getText());
+        person.setPhoneNumber(phoneNumberTextField.getText());
+        person.setMailAddress(mailTextField.getText());
+        person.setGroupNumber(groupNumberTextField.getText());
+        person.setSpecialityCode(person.getSpecialityCode());
+        person.setSocialNetwork(socialNetworkTextArea.getText());
+        System.out.println("Измененный студент: ");
+        person.showInfo();
+        System.out.println("---------------------------------------------------------------");
+
+        return person;
     }
 }

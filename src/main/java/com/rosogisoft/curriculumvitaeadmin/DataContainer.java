@@ -89,4 +89,5 @@ public class DataContainer {
     public static ObservableList<String> getSoftSkills() {
         return softSkills;
     }
+
 }

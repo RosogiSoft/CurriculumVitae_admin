@@ -43,8 +43,42 @@ public class DataBaseConnection {
         return DriverManager.getConnection(url, user, password);
     }
 
+    public static void saveData(Person student) {
+        System.out.println("Начало выполнения сохранения!");
+        try (Connection conn = connect()) {
+            conn.setAutoCommit(false);
+            //TODO: Написать запрос для всех атрибутов класса
+            String queryStudent =
+                    "UPDATE Student " +
+                    "SET STUDENTNAME = ?, DATEOFBIRTH = ?, GROUPNUMBER = ?, SPECIALTYCODE = ?, TELEPHONENUMBER = ?, EMAILADDRESS = ? " +
+                    "WHERE ID = ?";
+            String queryEducation;
+            String queryJob;
+            String queryPractice;
+            String queryCompetency;
+            String querySoftSkills;
+            String queryAdditionalInfo;
 
-    public static ObservableList<Person> getData() {
+            try (PreparedStatement psStudent = conn.prepareStatement(queryStudent)){
+                psStudent.setString(1, student.getName());
+                psStudent.setString(2, student.getDateOfBirth());
+                psStudent.setString(3, student.getGroupNumber());
+                psStudent.setInt(4, student.getSpecialityCode());
+                psStudent.setString(5, student.getPhoneNumber());
+                psStudent.setString(6, student.getMailAddress());
+                psStudent.setString(7, student.getId());
+                psStudent.executeUpdate();
+            } catch (SQLException e){
+                conn.rollback();
+                throw e;
+            }
+            conn.commit();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+        public static ObservableList<Person> getData() {
         String sqlQ = "SELECT \n" +
                 "`Student`.`ID`,\n" +
                 "`Student`.`STUDENTNAME`,\n" +
@@ -134,8 +168,6 @@ public class DataBaseConnection {
                 person.setCity(rs.getString(37));
                 //person.setImage((rs.getBinaryStream(38).readAllBytes()); <- Решить вопрос с временным хранением файла
                 person.setSpecialityCode(rs.getInt(39));
-                person.showInfo();
-                System.out.println("---------------------------------------------------------------------------");
                 students.add(person);
             }
         } catch (SQLException e) {
@@ -172,6 +204,7 @@ public class DataBaseConnection {
         String sqlQ = "SELECT SOFTSKILLS FROM Soft_Skills;";
         return executeQuery(sqlQ, 1);
     }
+    //TODO: Проверить базу данных на наличие пустых полей в служебных таблицах для сброса фильтра
     private static ObservableList<String> executeQuery(String sqlQeury, int rowIndex){
         ObservableList<String> dataArray = FXCollections.observableArrayList();
         dataArray.add(""); //Для сброса фильтра
