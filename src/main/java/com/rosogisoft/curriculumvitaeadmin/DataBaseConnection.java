@@ -52,12 +52,27 @@ public class DataBaseConnection {
                     "UPDATE Student " +
                     "SET STUDENTNAME = ?, DATEOFBIRTH = ?, GROUPNUMBER = ?, SPECIALTYCODE = ?, TELEPHONENUMBER = ?, EMAILADDRESS = ? " +
                     "WHERE ID = ?";
-            String queryEducation;
-            String queryJob;
-            String queryPractice;
+            String queryEducation =
+                    "UPDATE Student_Education " +
+                    "SET ESTABLISHMENT = ?, FACULTY = ?, FORMOFSTUDY = ?, YEAROFENDING = ?, CITY = ? " +
+                    "WHERE ID = ?";
+            String queryJob =
+                    "UPDATE Student_job " +
+                    "SET COMPANYNAME = ?, Student_job.POSITION = ?, EXPERIENCE = ?, Student_job.FUNCTION = ? " +
+                    "WHERE ID = ?";
+            String queryPractice =
+                    "UPDATE Student_Practice " +
+                    "SET COMPANYNAME = ?, Student_Practice.POSITION = ?, EXPERIENCE = ?, Student_Practice.FUNCTION = ? " +
+                    "WHERE ID = ?";;
             String queryCompetency;
-            String querySoftSkills;
-            String queryAdditionalInfo;
+            String querySoftSkills =
+                    "UPDATE Student_Soft_Skills " +
+                    "SET FIRSTSOFTSKILL = ?, SECONDSOFTSKILL = ?, THIRDSOFTSKILL = ?, FOURTHOFTSKILL = ?, FIVETHSOFTSKILL = ? " +
+                    "WHERE ID = ?";
+            String queryAdditionalInfo =
+                    "UPDATE Student_Additional_Info " +
+                    "SET ADDITIONALINFO = ?, FOREIGNLANGUAGE = ?, DRIVERLICENSE = ?, ADDITIONALCOMPETENCIES = ?, SOCIALNETWORK = ? " +
+                    "WHERE ID = ?";
 
             try (PreparedStatement psStudent = conn.prepareStatement(queryStudent)){
                 psStudent.setString(1, student.getName());
@@ -68,6 +83,52 @@ public class DataBaseConnection {
                 psStudent.setString(6, student.getMailAddress());
                 psStudent.setString(7, student.getId());
                 psStudent.executeUpdate();
+                StudentController.progressBar.setProgress(0.2); //TEST
+                try (PreparedStatement psStudentEducation = conn.prepareStatement(queryEducation)){
+                    psStudentEducation.setString(1, student.getEstablishment());
+                    psStudentEducation.setString(2, student.getFaculty());
+                    psStudentEducation.setString(3, student.getFormOfStudy());
+                    psStudentEducation.setString(4, student.getYearOfEnding());
+                    psStudentEducation.setString(5, student.getCity());
+                    psStudentEducation.setString(6, student.getId());
+                    psStudentEducation.executeUpdate();
+                    StudentController.progressBar.setProgress(0.4);
+                    try (PreparedStatement psStudentJob = conn.prepareStatement(queryJob)){
+                        psStudentJob.setString(1, student.getCompanyNameJob());
+                        psStudentJob.setString(2, student.getPositionJob());
+                        psStudentJob.setString(3, student.getExperienceJob());
+                        psStudentJob.setString(4, student.getFunctionJob());
+                        psStudentJob.setString(5, student.getId());
+                        psStudentJob.executeUpdate();
+                        StudentController.progressBar.setProgress(0.6);
+                        try (PreparedStatement psStudentPractice = conn.prepareStatement(queryPractice)){
+                            psStudentPractice.setString(1, student.getCompanyNamePractice());
+                            psStudentPractice.setString(2, student.getPositionPractice());
+                            psStudentPractice.setString(3, student.getExperiencePractice());
+                            psStudentPractice.setString(4, student.getFunctionPractice());
+                            psStudentPractice.setString(5, student.getId());
+                            psStudentPractice.executeUpdate();
+                            StudentController.progressBar.setProgress(0.6);
+                            try (PreparedStatement psStudentSoftSkills = conn.prepareStatement(querySoftSkills)){
+                                for (int i = 1; i < student.getSoftSkills().length; i++){
+                                    psStudentSoftSkills.setString(i, student.getSoftSkills()[i-1]);
+                                }
+                                psStudentSoftSkills.setString(6, student.getId());
+                                StudentController.progressBar.setProgress(0.8);
+                                try (PreparedStatement psStudentAdditionalInfo = conn.prepareStatement(queryAdditionalInfo)){
+                                    psStudentAdditionalInfo.setString(1, student.getAdditionalInfo());
+                                    psStudentAdditionalInfo.setString(2, student.getForeignLanguage());
+                                    psStudentAdditionalInfo.setString(3, student.getDriverLicense());
+                                    psStudentAdditionalInfo.setString(4, student.getAdditionalCompetencies());
+                                    psStudentAdditionalInfo.setString(5, student.getSocialNetwork());
+                                    psStudentAdditionalInfo.setString(6, student.getId());
+                                    StudentController.progressBar.setProgress(1.0);
+                                    //StudentController.progressBar.setVisible(false);
+                                }
+                            }
+                        }
+                    }
+                }
             } catch (SQLException e){
                 conn.rollback();
                 throw e;

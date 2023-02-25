@@ -60,7 +60,10 @@ public class StudentController {
     public ChoiceBox skillFour;
     public ChoiceBox skillFive;
 
+    public static ProgressBar progressBar;
+
     public void initialize(){
+        progressBar = savingProgressBar;
         prepareCheckboxes();
         setChekboxValues();
         setViewData(DataContainer.getSelectedStudent()); //Заполнение студента значениями
