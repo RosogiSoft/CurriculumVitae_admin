@@ -1,5 +1,6 @@
 package com.rosogisoft.curriculumvitaeadmin;
 
+import com.rosogisoft.curriculumvitaeadmin.generator.Generator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -13,6 +14,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.function.Predicate;
@@ -31,9 +33,6 @@ public class MainController {
 
     private ObservableList<Person> personData = FXCollections.observableArrayList();
     public void initialize(){
-        DataBaseConnection.getConnectionData();
-        DataContainer.getData();
-
         setChoiceBoxValues();
         updateTable();
     }
@@ -50,7 +49,14 @@ public class MainController {
         stage.show();
     }
     //Функция для генерации резюме
-    public void generate(ActionEvent actionEvent) {
+    public void generate(ActionEvent actionEvent) throws Exception {
+        DataContainer.setSelectedStudent(tableView.getSelectionModel().getSelectedItem());
+        System.out.println("Генерация резюме на следующего человека: ");
+        DataContainer.getSelectedStudent().showInfo();
+        String filePath = System.getProperty("user.home") + File.separator + "Desktop";
+        String filename = DataContainer.getSelectedStudent().getName() + ".docx";
+        Generator generator = new Generator(filePath + File.separator + filename);
+        generator.initFile();
 
     }
     public void updateButton(ActionEvent actionEvent) {
@@ -97,11 +103,31 @@ public class MainController {
         phoneNumberColum.setCellValueFactory(new PropertyValueFactory<Person, String>("phoneNumber"));
         tableView.setItems(studs);
         System.out.println("_______________________");
-        System.out.println("Обновление выполнено!");
+        System.out.println("Поиск выполнен!");
     }
     public void keyPressedNameTextField(KeyEvent keyEvent) {
         if (keyEvent.getCode().equals(KeyCode.ENTER)) {
             updateTable();
         }
+    }
+
+    //TODO: В последствии нужно будет добавить обработчики для всех остальных кнопок в MenuBar
+    //Кнопка в MenuBar
+    public void updateStudents(ActionEvent actionEvent) {
+        DataBaseConnection.getData();
+        DataContainer.setStudents(DataBaseConnection.getData());
+        updateTable();
+    }
+
+    public void changeData(ActionEvent actionEvent) {
+
+    }
+
+    public void aboutProgram(ActionEvent actionEvent) {
+
+    }
+
+    public void contacts(ActionEvent actionEvent) {
+
     }
 }

@@ -12,18 +12,8 @@ public class DataContainer {
     private static ObservableList<String> yearOfEndings = FXCollections.observableArrayList();
     private static ObservableList<String> foreignLanguages = FXCollections.observableArrayList();
     private static ObservableList<String> driverLicenses = FXCollections.observableArrayList();
+    private static ObservableList<String> softSkills = FXCollections.observableArrayList();
     private static Person selectedStudent;
-
-    public static void getData(){
-        setSpecialties();
-        setCourses();
-        setGroups();
-        setStudents();
-        setForeignLanguages();
-        setDriverLicenses();
-        setFormOfStudy();
-        setYearOfEnding();
-    }
 
     //Setters
     public static void setForeignLanguages() {
@@ -44,6 +34,9 @@ public class DataContainer {
     public static void setStudents() {
         students = DataBaseConnection.getData();
     }
+    public static void setStudents(ObservableList<Person> studentsList) {
+        students = studentsList;
+    }
     public static void setCourses() {
         courses = FXCollections.observableArrayList(
                 new String(""),
@@ -61,7 +54,9 @@ public class DataContainer {
     public static void setSelectedStudent(Person selectedStudent) {
         DataContainer.selectedStudent = selectedStudent;
     }
-
+    public static void setSoftSkills() {
+         softSkills = DataBaseConnection.getSoftSkills();
+    }
 
     //Getters
     public static ObservableList<String> getForeignLanguages() {
@@ -91,8 +86,8 @@ public class DataContainer {
     public static Person getSelectedStudent() {
         return selectedStudent;
     }
-
-
-
+    public static ObservableList<String> getSoftSkills() {
+        return softSkills;
+    }
 
 }

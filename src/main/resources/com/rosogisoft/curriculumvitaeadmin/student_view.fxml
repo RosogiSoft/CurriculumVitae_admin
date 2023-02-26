@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="background" stylesheets="@student_style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rosogisoft.curriculumvitaeadmin.StudentController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="background" stylesheets="@student_style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rosogisoft.curriculumvitaeadmin.StudentController">
    <children>
       <VBox prefHeight="802.0" prefWidth="246.0">
          <children>
@@ -33,6 +44,11 @@
                   <Insets left="10.0" />
                </VBox.margin>
             </HBox>
+            <ProgressBar fx:id="savingProgressBar" prefHeight="18.0" prefWidth="217.0" progress="0.0" stylesheets="@loading_style.css" visible="false">
+               <VBox.margin>
+                  <Insets left="25.0" top="100.0" />
+               </VBox.margin>
+            </ProgressBar>
          </children>
          <opaqueInsets>
             <Insets />
@@ -147,7 +163,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css">
+                                    <TextField fx:id="establishmentTextField" prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css">
                                        <HBox.margin>
                                           <Insets top="20.0" />
                                        </HBox.margin></TextField>
@@ -163,7 +179,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
+                                    <TextField fx:id="facultyTextField" prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
                                  </children>
                               </HBox>
                               <HBox prefHeight="32.0" prefWidth="629.0">
@@ -173,7 +189,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <ChoiceBox prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
+                                    <ChoiceBox fx:id="formOfStudyChoiceBox" prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
                                  </children>
                               </HBox>
                               <HBox prefHeight="32.0" prefWidth="629.0">
@@ -183,7 +199,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <ChoiceBox prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
+                                    <ChoiceBox fx:id="yearOfEndingChoiceBox" prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
                                  </children>
                               </HBox>
                               <HBox prefHeight="27.0" prefWidth="619.0">
@@ -193,7 +209,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
+                                    <TextField fx:id="cityTextField" prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
                                  </children>
                               </HBox>
                            </children>
@@ -215,7 +231,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
+                                    <TextField fx:id="companyNameJobTextField" prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
                                  </children>
                               </HBox>
                               <HBox prefHeight="32.0" prefWidth="629.0">
@@ -228,7 +244,7 @@
                                           <Insets />
                                        </HBox.margin>
                                     </Label>
-                                    <TextField prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
+                                    <TextField fx:id="positionJobTextField" prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
                                  </children>
                                  <VBox.margin>
                                     <Insets />
@@ -241,7 +257,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
+                                    <TextField fx:id="experienceJobTextField" prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
                                  </children>
                               </HBox>
                               <HBox prefHeight="93.0" prefWidth="609.0">
@@ -251,7 +267,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextArea prefHeight="26.0" prefWidth="420.0" styleClass="text_frame" stylesheets="@student_style.css" />
+                                    <TextArea fx:id="functionJobTextArea" prefHeight="26.0" prefWidth="420.0" styleClass="text_frame" stylesheets="@student_style.css" />
                                  </children>
                               </HBox>
                            </children>
@@ -276,7 +292,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css">
+                                    <TextField fx:id="companyNamePracticeTextField" prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>
@@ -296,32 +312,23 @@
                                           <Insets />
                                        </HBox.margin>
                                     </Label>
-                                    <TextField prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
+                                    <TextField fx:id="positionPracticeTextField" prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
                                  </children>
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
                               </HBox>
-                              <HBox prefHeight="32.0" prefWidth="629.0">
+                              <HBox prefHeight="75.0" prefWidth="609.0">
                                  <children>
-                                    <Label prefHeight="27.0" prefWidth="200.0" styleClass="sec_header" stylesheets="@student_style.css" text="Дата начала ПП">
+                                    <Label prefHeight="76.0" prefWidth="192.0" styleClass="sec_header" stylesheets="@student_style.css" text="Время прохождения практики" wrapText="true">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
+                                    <TextField fx:id="experiencePracticeTextField" prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
                                  </children>
                               </HBox>
-                              <HBox prefHeight="32.0" prefWidth="629.0">
-                                 <children>
-                                    <Label prefHeight="27.0" prefWidth="200.0" styleClass="sec_header" stylesheets="@student_style.css" text="Дата окончания ПП">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField prefHeight="25.0" prefWidth="420.0" styleClass="field" stylesheets="@student_style.css" />
-                                 </children>
-                              </HBox>
+                              <HBox prefHeight="32.0" prefWidth="629.0" />
                               <HBox prefHeight="93.0" prefWidth="609.0">
                                  <children>
                                     <Label prefHeight="73.0" prefWidth="200.0" styleClass="sec_header" stylesheets="@student_style.css" text="Выполняеемые обязанности" wrapText="true">
@@ -329,7 +336,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextArea prefHeight="26.0" prefWidth="420.0" styleClass="text_frame" stylesheets="@student_style.css" />
+                                    <TextArea fx:id="functionPracticeTextArea" prefHeight="26.0" prefWidth="420.0" styleClass="text_frame" stylesheets="@student_style.css" />
                                  </children>
                               </HBox>
                            </children>
@@ -567,7 +574,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextArea prefHeight="26.0" prefWidth="400.0" styleClass="text_frame" stylesheets="@student_style.css" />
+                                    <TextArea fx:id="additionalInfoTextArea" prefHeight="26.0" prefWidth="400.0" styleClass="text_frame" stylesheets="@student_style.css" />
                                  </children>
                                  <VBox.margin>
                                     <Insets top="20.0" />
@@ -580,7 +587,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextArea prefHeight="26.0" prefWidth="400.0" styleClass="text_frame" stylesheets="@student_style.css" />
+                                    <TextArea fx:id="additionalCompetencyTextArea" prefHeight="26.0" prefWidth="400.0" styleClass="text_frame" stylesheets="@student_style.css" />
                                  </children>
                               </HBox>
                               <HBox prefHeight="32.0" prefWidth="629.0">
@@ -590,7 +597,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <ChoiceBox prefHeight="25.0" prefWidth="400.0" styleClass="field" stylesheets="@student_style.css" />
+                                    <ChoiceBox fx:id="foreignLanguageChoiceBox" prefHeight="25.0" prefWidth="400.0" styleClass="field" stylesheets="@student_style.css" />
                                  </children>
                               </HBox>
                               <HBox prefHeight="32.0" prefWidth="629.0">
@@ -600,7 +607,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <ChoiceBox prefHeight="25.0" prefWidth="400.0" styleClass="field" stylesheets="@student_style.css" />
+                                    <ChoiceBox fx:id="driverLicenceChoiceBox" prefHeight="25.0" prefWidth="400.0" styleClass="field" stylesheets="@student_style.css" />
                                  </children>
                               </HBox>
                            </children>

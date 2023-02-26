@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class Person {
+    //TODO: Отсортировать все атрибуты по порядку и разбить их на группы
     private String id;
     private String name;
     private String dateOfBirth;
@@ -25,20 +26,28 @@ public class Person {
     private String faculty;
     private String formOfStudy;
     private String yearOfEnding;
-
     private String city;
-    private boolean[] competency = new boolean[15];
+    private String[] competency = new String[15];
     private String specialtyInfo;
     private String[] softSkills;
+    private String companyNameJob;
+    private String positionJob;
+    private String experienceJob;
+    private String functionJob;
+    private String companyNamePractice;
+    private String positionPractice;
+    private String experiencePractice;
+    private String functionPractice;
 
     public void showInfo() {
         String competencyInfo = "";
 
         System.out.println("Итоговая инофрмация о человеке: ");
+        System.out.println("ID: " + this.id);
         System.out.println("Имя: " + this.name + ", Дата рождения: " + this.dateOfBirth);
-        System.out.println("Номер телефона: " + this.phoneNumber + ", Номер телефона: " + this.mailAddress);
+        System.out.println("Номер телефона: " + this.phoneNumber + ", Почта: " + this.mailAddress);
         System.out.println("Социальные сети: " + this.socialNetwork);
-        System.out.println("Номер группы: " + this.groupNumber + "Специальность: " + this.speciality);
+        System.out.println("Номер группы: " + this.groupNumber + ", Специальность: " + this.speciality + " (" + this.specialityCode + ")");
         System.out.println("Дополнительная информация: " + this.additionalInfo);
         System.out.println("Иностранный язык: " + this.foreignLanguage);
         System.out.println("Водительское удостоверение: " + this.driverLicense);
@@ -46,8 +55,56 @@ public class Person {
         System.out.println("Социальные навыки: " + Arrays.toString(this.softSkills));
         System.out.println("Профессиональные навыки: " + Arrays.toString(this.competency));
     }
-
     //Down bellow only setters and getters of Person fields
+    //TODO: Разделить на все на геттеры и сеттеры (отдельно) и остортировать по порядку
+    public String getCompanyNameJob() {
+        return companyNameJob;
+    }
+    public void setCompanyNameJob(String companyNameJob) {
+        this.companyNameJob = companyNameJob;
+    }
+    public String getPositionJob() {
+        return positionJob;
+    }
+    public void setPositionJob(String positionJob) {
+        this.positionJob = positionJob;
+    }
+    public String getExperienceJob() {
+        return experienceJob;
+    }
+    public void setExperienceJob(String experienceJob) {
+        this.experienceJob = experienceJob;
+    }
+    public String getFunctionJob() {
+        return functionJob;
+    }
+    public void setFunctionJob(String functionJob) {
+        this.functionJob = functionJob;
+    }
+    public String getCompanyNamePractice() {
+        return companyNamePractice;
+    }
+    public void setCompanyNamePractice(String companyNamePractice) {
+        this.companyNamePractice = companyNamePractice;
+    }
+    public String getPositionPractice() {
+        return positionPractice;
+    }
+    public void setPositionPractice(String positionPractice) {
+        this.positionPractice = positionPractice;
+    }
+    public String getExperiencePractice() {
+        return experiencePractice;
+    }
+    public void setExperiencePractice(String experiencePractice) {
+        this.experiencePractice = experiencePractice;
+    }
+    public String getFunctionPractice() {
+        return functionPractice;
+    }
+    public void setFunctionPractice(String functionPractice) {
+        this.functionPractice = functionPractice;
+    }
     public String getSpecialtyInfo() {
         return specialtyInfo;
     }
@@ -129,7 +186,7 @@ public class Person {
         this.driverLicense = driverLicense;
     }
     public String getAdditionalCompetencies() {
-        return additionalCompetencies;
+       return additionalCompetencies;
     }
     public void setAdditionalCompetencies(String additionalCompetencies) {
         this.additionalCompetencies = additionalCompetencies;
@@ -170,10 +227,10 @@ public class Person {
     public void setCity(String city) {
         this.city = city;
     }
-    public boolean[] getCompetency() {
+    public String[] getCompetency() {
         return competency;
     }
-    public void setCompetency(boolean[] competency) {
+    public void setCompetency(String[] competency) {
         this.competency = competency;
     }
     public String[] getSoftSkills() {

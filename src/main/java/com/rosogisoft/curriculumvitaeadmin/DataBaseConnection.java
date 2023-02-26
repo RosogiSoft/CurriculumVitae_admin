@@ -15,7 +15,6 @@ public class DataBaseConnection {
     private static String user;
     private static String password;
     private static Person person;
-    private static ObservableList<Person> personData = FXCollections.observableArrayList();
     public static void getConnectionData(){
         FileInputStream fileInputStream;
         Properties properties = new Properties();
@@ -44,8 +43,103 @@ public class DataBaseConnection {
         return DriverManager.getConnection(url, user, password);
     }
 
+    public static void saveData(Person student) {
+        System.out.println("Начало выполнения сохранения!");
+        try (Connection conn = connect()) {
+            conn.setAutoCommit(false);
+            //TODO: Написать запрос для всех атрибутов класса
+            String queryStudent =
+                    "UPDATE Student " +
+                    "SET STUDENTNAME = ?, DATEOFBIRTH = ?, GROUPNUMBER = ?, SPECIALTYCODE = ?, TELEPHONENUMBER = ?, EMAILADDRESS = ? " +
+                    "WHERE ID = ?";
+            String queryEducation =
+                    "UPDATE Student_Education " +
+                    "SET ESTABLISHMENT = ?, FACULTY = ?, FORMOFSTUDY = ?, YEAROFENDING = ?, CITY = ? " +
+                    "WHERE ID = ?";
+            String queryJob =
+                    "UPDATE Student_job " +
+                    "SET COMPANYNAME = ?, Student_job.POSITION = ?, EXPERIENCE = ?, Student_job.FUNCTION = ? " +
+                    "WHERE ID = ?";
+            String queryPractice =
+                    "UPDATE Student_Practice " +
+                    "SET COMPANYNAME = ?, Student_Practice.POSITION = ?, EXPERIENCE = ?, Student_Practice.FUNCTION = ? " +
+                    "WHERE ID = ?";;
+            String queryCompetency;
+            String querySoftSkills =
+                    "UPDATE Student_Soft_Skills " +
+                    "SET FIRSTSOFTSKILL = ?, SECONDSOFTSKILL = ?, THIRDSOFTSKILL = ?, FOURTHOFTSKILL = ?, FIVETHSOFTSKILL = ? " +
+                    "WHERE ID = ?";
+            String queryAdditionalInfo =
+                    "UPDATE Student_Additional_Info " +
+                    "SET ADDITIONALINFO = ?, FOREIGNLANGUAGE = ?, DRIVERLICENSE = ?, ADDITIONALCOMPETENCIES = ?, SOCIALNETWORK = ? " +
+                    "WHERE ID = ?";
 
-    public static ObservableList<Person> getData() {
+            try (PreparedStatement psStudent = conn.prepareStatement(queryStudent)){
+                psStudent.setString(1, student.getName());
+                psStudent.setString(2, student.getDateOfBirth());
+                psStudent.setString(3, student.getGroupNumber());
+                psStudent.setInt(4, student.getSpecialityCode());
+                psStudent.setString(5, student.getPhoneNumber());
+                psStudent.setString(6, student.getMailAddress());
+                psStudent.setString(7, student.getId());
+                psStudent.executeUpdate();
+                StudentController.progressBar.setProgress(0.2); //TEST
+                try (PreparedStatement psStudentEducation = conn.prepareStatement(queryEducation)){
+                    psStudentEducation.setString(1, student.getEstablishment());
+                    psStudentEducation.setString(2, student.getFaculty());
+                    psStudentEducation.setString(3, student.getFormOfStudy());
+                    psStudentEducation.setString(4, student.getYearOfEnding());
+                    psStudentEducation.setString(5, student.getCity());
+                    psStudentEducation.setString(6, student.getId());
+                    psStudentEducation.executeUpdate();
+                    StudentController.progressBar.setProgress(0.4);
+                    try (PreparedStatement psStudentJob = conn.prepareStatement(queryJob)){
+                        psStudentJob.setString(1, student.getCompanyNameJob());
+                        psStudentJob.setString(2, student.getPositionJob());
+                        psStudentJob.setString(3, student.getExperienceJob());
+                        psStudentJob.setString(4, student.getFunctionJob());
+                        psStudentJob.setString(5, student.getId());
+                        psStudentJob.executeUpdate();
+                        StudentController.progressBar.setProgress(0.6);
+                        try (PreparedStatement psStudentPractice = conn.prepareStatement(queryPractice)){
+                            psStudentPractice.setString(1, student.getCompanyNamePractice());
+                            psStudentPractice.setString(2, student.getPositionPractice());
+                            psStudentPractice.setString(3, student.getExperiencePractice());
+                            psStudentPractice.setString(4, student.getFunctionPractice());
+                            psStudentPractice.setString(5, student.getId());
+                            psStudentPractice.executeUpdate();
+                            StudentController.progressBar.setProgress(0.6);
+                            try (PreparedStatement psStudentSoftSkills = conn.prepareStatement(querySoftSkills)){
+                                for (int i = 1; i < student.getSoftSkills().length; i++){
+                                    psStudentSoftSkills.setString(i, student.getSoftSkills()[i-1]);
+                                }
+                                psStudentSoftSkills.setString(6, student.getId());
+                                StudentController.progressBar.setProgress(0.8);
+                                try (PreparedStatement psStudentAdditionalInfo = conn.prepareStatement(queryAdditionalInfo)){
+                                    psStudentAdditionalInfo.setString(1, student.getAdditionalInfo());
+                                    psStudentAdditionalInfo.setString(2, student.getForeignLanguage());
+                                    psStudentAdditionalInfo.setString(3, student.getDriverLicense());
+                                    psStudentAdditionalInfo.setString(4, student.getAdditionalCompetencies());
+                                    psStudentAdditionalInfo.setString(5, student.getSocialNetwork());
+                                    psStudentAdditionalInfo.setString(6, student.getId());
+                                    StudentController.progressBar.setProgress(1.0);
+                                    //StudentController.progressBar.setVisible(false);
+                                }
+                            }
+                        }
+                    }
+                }
+            } catch (SQLException e){
+                conn.rollback();
+                throw e;
+            }
+            conn.commit();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+        public static ObservableList<Person> getData() {
         String sqlQ = "SELECT \n" +
                 "`Student`.`ID`,\n" +
                 "`Student`.`STUDENTNAME`,\n" +
@@ -84,7 +178,8 @@ public class DataBaseConnection {
                 "`Student_Education`.`FORMOFSTUDY`,\n" +
                 "`Student_Education`.`YEAROFENDING`,\n" +
                 "`Student_Education`.`CITY`,\n" +
-                "`Student_Photo`.`PHOTO`\n" +
+                "`Student_Photo`.`PHOTO`, \n" +
+                "`Student`.`SPECIALTYCODE`\n" +
                 "FROM  Student\n" +
                 "LEFT JOIN Student_Additional_Info\n" +
                 "ON Student.ID = Student_Additional_Info.ID\n" +
@@ -117,9 +212,9 @@ public class DataBaseConnection {
                 person.setAdditionalCompetencies(rs.getString(11));
                 person.setSocialNetwork(rs.getString(12));
 
-                boolean[] competency = new boolean[15];
+                String[] competency = new String[15];
                 for (int i = 13; i <= 27; i++){
-                    competency[i-13] = rs.getBoolean(i);
+                    competency[i-13] = rs.getString(i);
                 }
                 person.setCompetency(competency);
 
@@ -133,8 +228,7 @@ public class DataBaseConnection {
                 person.setYearOfEnding(rs.getString(36));
                 person.setCity(rs.getString(37));
                 //person.setImage((rs.getBinaryStream(38).readAllBytes()); <- Решить вопрос с временным хранением файла
-                person.showInfo();
-                System.out.println("---------------------------------------------------------------------------");
+                person.setSpecialityCode(rs.getInt(39));
                 students.add(person);
             }
         } catch (SQLException e) {
@@ -167,8 +261,14 @@ public class DataBaseConnection {
         String sqlQ = "SELECT YEAROFENDING FROM Year_Of_Ending;";
         return executeQuery(sqlQ, 1);
     }
-    public static ObservableList<String> executeQuery(String sqlQeury, int rowIndex){
+    public static ObservableList<String> getSoftSkills() {
+        String sqlQ = "SELECT SOFTSKILLS FROM Soft_Skills;";
+        return executeQuery(sqlQ, 1);
+    }
+    //TODO: Проверить базу данных на наличие пустых полей в служебных таблицах для сброса фильтра
+    private static ObservableList<String> executeQuery(String sqlQeury, int rowIndex){
         ObservableList<String> dataArray = FXCollections.observableArrayList();
+        dataArray.add(""); //Для сброса фильтра
         try (Connection conn = connect()) {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(sqlQeury);
